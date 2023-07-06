@@ -4,7 +4,7 @@ use strict;
 use lib "./";
 use Melnik01Stack;
 
-my $cl = Melnik01Stack->new( 'array' => [] );
+my $cl = Melnik01Stack->new( 'array' => [1, 2, 3] );
 
 my $ref = $cl->get_stack();
 print "\nlength of stack before pushing: " . $cl->get_len();
@@ -20,7 +20,6 @@ print "\nlength of stack after pushing: " . $cl->get_len();
 $cl->show_stack();
 
 # pop element from stack
-$cl->remove_element();
 $cl->remove_element();
 print "\nlength of stack after pop: " . $cl->get_len();
 $cl->show_stack();

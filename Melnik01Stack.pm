@@ -48,9 +48,17 @@ sub get_len
 sub get_peak
 {
   my ($self) = @_;
-
+  my $len = $self->get_len();
   my $ref = $self->{array};
-  return $ref->[$#$ref];
+  if ($len == 0)
+  {
+    die "Stack is empty\n";
+  }
+  else
+  {
+    return $ref->[$#$ref];
+  }
+  
 }
   
 # show_stack()
