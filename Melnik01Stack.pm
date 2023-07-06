@@ -93,6 +93,14 @@ sub remove_element
   my ($self) = @_;
 
   my $ref = $self->{array};
-  pop(@$ref);
+  my $len = $self->get_len();
+  if ($len == 0)
+  {
+    die "stack is empty";
+  }
+  else
+  {
+    pop(@$ref);
+  }
 }
 1; # ok!
