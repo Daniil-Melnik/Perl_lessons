@@ -9,7 +9,7 @@ use strict;
 # new( %params )
 # constructor of class
 # %params - parameters for new element of class
-# return element of class Steck
+# return element of class Stack
 sub new
 {
   my ($type) = shift;
@@ -24,11 +24,11 @@ sub new
   
 # get_steck()
 # getter of stack from element of class
-# return referense to stack
+# return reference to stack
 sub get_stack
 {
-    my ($self) = @_;
-    return $self->{array};
+  my ($self) = @_;
+  return $self->{array};
 }
   
 # get_len()
@@ -56,7 +56,7 @@ sub get_peak
   }
   else
   {
-    return $ref->[$#$ref];
+    return $ref->[$len-1];
   }
   
 }
@@ -111,4 +111,4 @@ sub remove_element
     pop(@$ref);
   }
 }
-1; # ok!
+1;
