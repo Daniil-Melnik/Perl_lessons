@@ -14,10 +14,10 @@ my %hash;
 my $first_param = 5;
 my $second_param = 9;
 
-%hash = (%hash, 'Addition', $first_param + $second_param);
-%hash = (%hash, 'Subtraction', $first_param - $second_param);
-%hash = (%hash, 'Multiplication', $first_param * $second_param);
-%hash = (%hash, 'Division', $first_param / $second_param);
+%hash = (%hash, 'addition', $first_param + $second_param);
+%hash = (%hash, 'subtraction', $first_param - $second_param);
+%hash = (%hash, 'multiplication', $first_param * $second_param);
+%hash = (%hash, 'division', $first_param / $second_param);
 
 foreach my $k (keys %hash)
 {
@@ -27,10 +27,10 @@ print "============================\n";
 print "\nOverview of variables and operations by reference:\n\n";
 
 my $hash1;
-$hash1->{'Addition'} = $first_param + $second_param;
-$hash1->{'Subtraction'} = $first_param - $second_param;
-$hash1->{'Multiplication'} = $first_param * $second_param;
-$hash1->{'Division'} = $first_param / $second_param;
+$hash1->{'addition'} = $first_param + $second_param;
+$hash1->{'subtraction'} = $first_param - $second_param;
+$hash1->{'multiplication'} = $first_param * $second_param;
+$hash1->{'division'} = $first_param / $second_param;
 
 foreach my $key (keys %{$hash1})
 {
