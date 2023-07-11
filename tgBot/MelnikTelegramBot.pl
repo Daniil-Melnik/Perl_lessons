@@ -22,10 +22,10 @@ while (1)
 {
   my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
 
-  foreach my $update ( @{$updates->{result}} )
+  foreach my $update ( @{ $updates->{result} } )
   {
     my $upd_message = $update->{ message };
-    if ($upd_message)
+    if ( $upd_message )
     {
       my $user_of_message_id = $upd_message->{ from }->{ id };
       my $user_of_message_name = $upd_message->{ from }->{ first_name };
@@ -35,7 +35,7 @@ while (1)
 
       if ( $upd_message->{ new_chat_members } ) 
       {
-        foreach my $new_member ( @{$upd_message->{ new_chat_members }} ) 
+        foreach my $new_member ( @{ $upd_message->{ new_chat_members } } ) 
         {
 
           my $new_member_id = $new_member->{id};
@@ -47,7 +47,7 @@ while (1)
       elsif ($users{ $user_of_message_id } == 0 && $upd_message->{ text }) 
       { 
 
-        $users{$user_of_message_id} = 1;
+        $users{ $user_of_message_id } = 1;
         my $ans;
     
         if ( ($hour >= 0) && ($hour <= 12) )
