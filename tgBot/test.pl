@@ -22,30 +22,34 @@ $bot->call('sendMessage', { chat_id => $chat_id, text => "Запуск прог�
 
 while (1)
 {
-    my $updates = $bot->call('getUpdates', offset => $number_of_update + 1);
-    
+    my $updates = $bot->call('getUpdates', { offset => $number_of_update + 1 } );
+    print "/\n";
+
+    foreach my $update ( @{$updates->{result}} )
+    {
+        print "*\n";
+        # $bot->call('sendMessage', { chat_id => $chat_id, text => "." });
+
+        my $upd_message = $update->{ message };
+        if ($upd_message)
+        {
+            my $user_of_message_id = $upd_message->{ from }->{ id };
+            my $user_of_message_name = $upd_message->{ from }->{ first_name };
+
+            $bot->call('sendMessage', { chat_id => $chat_id, text =>  $user_of_message_name});        
+
+            # if ( $message->{ new_chat_members })
+            # {
+            #     foreach my $new_member ( @{$message->{ new_chat_members }} )
+            #     {
+            #         my $new_member_id = $new_member->{ id }; #
+            #     }
+            # }
+        }
+    }
 }
 
-# my $last_update_id = 0;
 
-# while (1) 
-# {
-#     print ".\n";
-#   # получаем последнее обновление
-#   my $updates = $tg->call('getUpdates', { offset => $last_update_id + 1 } );
-
-#   foreach my $update ( @{$updates->{result}} )
-#   {
-#     # сюда запищи месендж
-#     my $message = $update->{ message };
-
-#     if( $message )
-#     {
-#       my $user_id = $message->{ from }->{ id };
-#       my $user_name = $message->{ from }->{ first_name };
-       
-#         if ( $message->{ new_chat_members } ) 
-#         {
 #           foreach my $new_member ( @{$message->{ new_chat_members }} ) 
 #           {
 #             # Получаем id нового участника чата
