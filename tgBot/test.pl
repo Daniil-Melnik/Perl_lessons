@@ -1,51 +1,92 @@
-use WWW::Telegram::BotAPI;
-my $api = WWW::Telegram::BotAPI->new (
-    token => 'my_token'
-);
-# The API methods die when an error occurs.
-say $api->getMe->{result}{username};
-# ... but error handling is available as well.
-my $result = eval { $api->getMe }
-    or die 'Got error message: ', $api->parse_error->{msg};
-# Uploading files is easier than ever.
-$api->sendPhoto ({
-    chat_id => 123456,
-    photo   => {
-        file => '/home/me/cool_pic.png'
-    },
-    caption => 'Look at my cool photo!'
-});
-# Complex objects are as easy as writing a Perl object.
-$api->sendMessage ({
-    chat_id      => 123456,
-    # Object: ReplyKeyboardMarkup
-    reply_markup => {
-        resize_keyboard => \1, # \1 = true when JSONified, \0 = false
-        keyboard => [
-            # Keyboard: row 1
-            [
-                # Keyboard: button 1
-                'Hello world!',
-                # Keyboard: button 2
-                {
-                    text => 'Give me your phone number!',
-                    request_contact => \1
-                }
-            ]
-        ]
-    }
-});
-# Asynchronous request are supported with Mojo::UserAgent.
-$api = WWW::Telegram::BotAPI->new (
-    token => 'my_token',
-    async => 1 # WARNING: may fail if Mojo::UserAgent is not available!
-);
-$api->sendMessage ({
-    chat_id => 123456,
-    text    => 'Hello world!'
-}, sub {
-    my ($ua, $tx) = @_;
-    die 'Something bad happened!' if $tx->error;
-    say $tx->res->json->{ok} ? 'YAY!' : ':('; # Not production ready!
-});
-Mojo::IOLoop->start;
+use strict;
+use warnings;
+use utf8;
+BEGIN{ unshift @INC, "./" };
+use FindBin;
+use lib $FindBin::Bin;
+use WebProgTelegramClient;
+
+print "flag 1";
+
+#хеш в которые будет добавлять пару ключ/значение  уникального пользователя, проверка гита
+my %users;
+
+# Токен бота 
+my $token = '6066175785:AAGbPy6vKuuneCAP8XI7XC8fJAl80nfeAfQ';
+# id  тестового чата
+my $chat_id = '-1001912609456';
+
+my $tg = WebProgTelegramClient->new( token => $token );
+
+my $group_info = $tg->call('getChat', { chat_id => $chat_id } ); 
+
+my $last_update_id = 0;
+
+print "flag 2";
+
+$tg->call('sendMessage', { chat_id => $chat_id, text => "Продаю аквариумы и плиты." });
+
+while (1) 
+{
+    print ".\n";
+  # получаем последнее обновление
+  my $updates = $tg->call('getUpdates', { offset => $last_update_id + 1 } );
+
+  foreach my $update ( @{$updates->{result}} )
+  {
+    # сюда запищи месендж
+    my $message = $update->{ message };
+
+    if( $message )
+    {
+      my $user_id = $message->{ from }->{ id };
+      my $user_name = $message->{ from }->{ first_name };
+       
+        if ( $message->{ new_chat_members } ) 
+        {
+          foreach my $new_member ( @{$message->{ new_chat_members }} ) 
+          {
+            # Получаем id нового участника чата
+            my $new_member_id = $new_member->{ id };
+              # добавляем в хеш id  участника с значением "0";
+              $users{ $new_member_id } = 0;
+          }
+        }
+        # Проверяем в хеше равно ли значение участника - "0", проверка на уникальность сообщения участника
+        elsif ( $users{ $user_id } == 0 && $message->{ text } ) 
+        { 
+          # Присваевыем новое значение в хеш
+          $users{ $user_id } = 1;
+          my $response = "Привет, $user_name!";
+          $tg->call( 'sendMessage', { chat_id => $chat_id, text => $response } );
+        }
+
+        # Информация о пользователе, удалённом из группы
+        if( $message->{ left_chat_member } )
+        {
+          # Получаем юзера который вышел 
+          my $came_out_user = $message->{ left_chat_member };
+          # проверяем вышел ли кто-то из чата 
+          if ( $came_out_user && $came_out_user->{ first_name } )
+          {
+            my $first_name = $came_out_user->{ first_name };
+            my $chat_id = $message->{ chat }->{ id };
+            my $response = "желаем удачи, $first_name!, ";
+            # отправляем сообщение в чат 
+            $tg->call('sendMessage', { chat_id => $chat_id, text => $response });
+          }
+        }
+      }
+
+    $last_update_id = $update->{ update_id };
+
+  }
+
+}
+
+
+
+# my $cl = WebProgTelegramClient->new( 'token' => '6066175785:AAGbPy6vKuuneCAP8XI7XC8fJAl80nfeAfQ' );
+# $cl->sendMessage(chat_id => -1001912609456, text => 'Hello world!');
+
+# print "ok";
