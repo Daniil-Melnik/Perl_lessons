@@ -6,19 +6,18 @@ use WebProgTelegramClient;
 
 # use Time::Local;
 
-my %all_members;
-
 # объявление токена бота и id группы для дальнейшей работы
 my $token = '6066175785:AAGbPy6vKuuneCAP8XI7XC8fJAl80nfeAfQ';
-my $chat_id = '-1001907883977';
+my $chat_id = '-1001929018339';
 
 # создание базовых условий: создание бота, поиск чата, задание начального значения id обновления
 my $bot = WebProgTelegramClient->new( token => $token );
 my $chat = $bot->call( 'getChat', {chat_id => $chat_id} );
+my %all_members;
 my $number_of_update = 0;
 
 # отладочное сообщение в канал о запуске программы
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => "Запуск программы" } );
+# $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Запуск программы" } );
 
 # бесконечный цикл для постоянного контроля за изменениями в группе
 while (1)
@@ -63,7 +62,6 @@ while (1)
           my $left_member = $upd_message->{ left_chat_member };
           if ($left_member && $left_member->{ first_name })
           {
-            my $ans;
             my $left_member_name = $left_member->{ first_name };
             $bot->call('sendMessage', { chat_id => $chat_id, text => "Желаем удачи, " .  $left_member_name . "."});
           }
