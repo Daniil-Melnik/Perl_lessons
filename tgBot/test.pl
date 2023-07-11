@@ -15,7 +15,7 @@ my %users;
 my %messages;
  
 my $token = '6066175785:AAGbPy6vKuuneCAP8XI7XC8fJAl80nfeAfQ';
-my $chat_id = '-1001912609456';
+my $chat_id = '-1001907883977';
 
 my $bot = WebProgTelegramClient->new( token => $token );
 my $chat = $bot->call('getChat', {chat_id => $chat_id});
@@ -38,70 +38,63 @@ while (1)
 
     foreach my $update ( @{$updates->{result}} )
     {
-        print "*\n";
-        # $bot->call('sendMessage', { chat_id => $chat_id, text => "." });
 
         my $upd_message = $update->{ message };
         if ($upd_message)
         {
             my $user_of_message_id = $upd_message->{ from }->{ id };
             my $user_of_message_name = $upd_message->{ from }->{ first_name };
-            my $text_of_message = $upd_message->{ text };
+            # my $text_of_message = $upd_message->{ text };
             my $date_of_message = $upd_message->{ date };
 
             my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($date_of_message);
 
-            if ( $upd_message->{ new_chat_members })
+            if ( $upd_message->{ new_chat_members } ) 
             {
-                foreach my $new_member ( @{$upd_message->{ new_chat_members }} ) #---
-                {
-                    my $new_member_id = $new_member->{ id }; #
-                    $users{ $new_member_id } = 0; #
-                }
+            foreach my $new_member ( @{$upd_message->{ new_chat_members }} ) 
+            {
+
+                my $new_member_id = $new_member->{ id };
+
+                $users{ $new_member_id } = 0;
             }
+            }
+
             elsif ( $users{ $user_of_message_id } == 0 && $upd_message->{ text } ) 
             { 
-            # Присваевыем новое значение в хеш
+
                 $users{ $user_of_message_id } = 1;
-                $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Привет, $user_of_message_name!" } );#
+                my $ans;
+    
+                if (($hour >=0) && ($hour <= 12))
+                {
+                    $ans = "Доброе утро, " . $user_of_message_name . "!";
+                }
+                elsif (($hour > 12) && ($hour <=18))
+                {
+                    $ans = "Добрый день, " . $user_of_message_name . "!";
+                }
+                elsif (($hour > 18) && ($hour <24))
+                {
+                    $ans = "Добрый вечер, " . $user_of_message_name . "!";
+                }
+                $bot->call( 'sendMessage', { chat_id => $chat_id, text => $ans } );
+            }
+
+            if ($upd_message->{ left_chat_member })
+            {
+                my $left_member = $upd_message->{ left_chat_member };
+                if ($left_member && $left_member->{ first_name })
+                {
+                    my $ans;
+                    my $left_member_name = $left_member->{ first_name };
+                    $bot->call('sendMessage', { chat_id => $chat_id, text => "До новых встреч, " .  $left_member_name . "."});
+                }
             }
         }
+        $number_of_update = $update->{ update_id };
     }
 }
-
-
-#         # Проверяем в хеше равно ли значение участника - "0", проверка на уникальность сообщения участника
-#         elsif ( $users{ $user_id } == 0 && $message->{ text } ) 
-#         { 
-#           # Присваевыем новое значение в хеш
-#           $users{ $user_id } = 1;
-#           my $response = "Привет, $user_name!";
-#           $tg->call( 'sendMessage', { chat_id => $chat_id, text => $response } );
-#         }
-
-#         # Информация о пользователе, удалённом из группы
-#         if( $message->{ left_chat_member } )
-#         {
-#           # Получаем юзера который вышел 
-#           my $came_out_user = $message->{ left_chat_member };
-#           # проверяем вышел ли кто-то из чата 
-#           if ( $came_out_user && $came_out_user->{ first_name } )
-#           {
-#             my $first_name = $came_out_user->{ first_name };
-#             my $chat_id = $message->{ chat }->{ id };
-#             my $response = "желаем удачи, $first_name!, ";
-#             # отправляем сообщение в чат 
-#             $tg->call('sendMessage', { chat_id => $chat_id, text => $response });
-#           }
-#         }
-#       }
-
-#     $last_update_id = $update->{ update_id };
-
-#   }
-
-# }
-
 
 
 # my $cl = WebProgTelegramClient->new( 'token' => '6066175785:AAGbPy6vKuuneCAP8XI7XC8fJAl80nfeAfQ' );
