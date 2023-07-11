@@ -4,7 +4,7 @@ use utf8;
 use lib "./";
 use WebProgTelegramClient;
 
-use Time::Local;
+# use Time::Local;
 
 my %all_members;
 
@@ -35,10 +35,10 @@ while (1)
       # выделение из сообщения основных его характеристик: id и имя пользователя, дату сообщения
       my $user_of_message_id = $upd_message->{ from }->{ id };
       my $user_of_message_name = $upd_message->{ from }->{ first_name };
-      my $date_of_message = $upd_message->{ date };
+      # my $date_of_message = $upd_message->{ date };
 
       # конвертация даты в обычный формат
-      my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime( $date_of_message );
+      # my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime( $date_of_message );
 
       # контроль появления новых пользователей через спец. хеш
       if ( $upd_message->{ new_chat_members } ) 
