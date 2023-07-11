@@ -53,21 +53,7 @@ while (1)
       elsif ($all_members{ $user_of_message_id } == 0 && $upd_message->{ text }) 
       { 
         $all_members{ $user_of_message_id } = 1;
-        my $ans;
-    
-        if ( ($hour >= 0) && ($hour <= 12) )
-        {
-          $ans = "Доброе утро, " . $user_of_message_name . "!";
-        }
-        elsif ( ($hour > 12) && ($hour <= 18) )
-        {
-          $ans = "Добрый день, " . $user_of_message_name . "!";
-        }
-        elsif ( ($hour > 18) && ($hour < 24) )
-        {
-          $ans = "Добрый вечер, " . $user_of_message_name . "!";
-        }
-
+        my $ans = "Привет, " . $user_of_message_name . "!";;
         $bot->call( 'sendMessage', { chat_id => $chat_id, text => $ans } );
       }
 
@@ -79,7 +65,7 @@ while (1)
           {
             my $ans;
             my $left_member_name = $left_member->{ first_name };
-            $bot->call('sendMessage', { chat_id => $chat_id, text => "До новых встреч, " .  $left_member_name . "."});
+            $bot->call('sendMessage', { chat_id => $chat_id, text => "Желаем удачи, " .  $left_member_name . "."});
           }
         }
     }
