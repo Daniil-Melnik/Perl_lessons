@@ -50,15 +50,15 @@ while (1)
         $users{ $user_of_message_id } = 1;
         my $ans;
     
-        if (($hour >=0) && ($hour <= 12))
+        if (($hour >= 0) && ($hour <= 12))
         {
           $ans = "Доброе утро, " . $user_of_message_name . "!";
         }
-        elsif (($hour > 12) && ($hour <=18))
+        elsif (($hour > 12) && ($hour <= 18))
         {
           $ans = "Добрый день, " . $user_of_message_name . "!";
         }
-        elsif (($hour > 18) && ($hour <24))
+        elsif (($hour > 18) && ($hour < 24))
         {
           $ans = "Добрый вечер, " . $user_of_message_name . "!";
         }
