@@ -27,21 +27,24 @@ my $bot = WebProgTelegramClient->new( token => $token );
 my $chat = $bot->call( 'getChat', {chat_id => $chat_id} );
 
 my %all_members;
-my %deadline = {1 => "13.07.2023", 2 => "15.07.2023"};
+my %deadlines = (1 => "13.07.2023", 2 => "15.07.2023");
 my $sth = $dbh->prepare("INSERT INTO hw_id(hw_num,deadline) VALUES (?,?)");
 
-$sth->execute(1, $deadline{1});
-$sth->execute(2, $deadline{2});
+$sth->execute(1, $deadlines{1});
+$sth->execute(2, $deadlines{2});
 
 my $number_of_update = 0;
 
-# отладочное сообщение в канал о запуске программы
-# $bot->call( 'sendMessage', { chat_id => $chat_id, text => "«апуск программы" } );
-
-# бесконечный цикл дл€ посто€нного контрол€ за изменени€ми в группе
-
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
 my $group_num = 3;
+ 
+
+my $arrayref_of_row_hashrefs = $dbh->selectall_arrayref("SELECT student_name, group_num FROM student_id WHERE group_num BETWEEN ? AND ?",{ Slice => {} }, 0, 5);
+
+foreach my $el (@$arrayref_of_row_hashrefs)
+{
+  print $el->{student_name} . " " . "\n";
+}
 
 # рассмотрение всех обновлений
 foreach my $update ( @{ $updates->{result} } )
