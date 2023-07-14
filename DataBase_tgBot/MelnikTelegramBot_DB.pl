@@ -18,42 +18,45 @@ $dbh->do('SET NAMES cp1251');
 
 # use Time::Local;
 
-# Ğ¾Ğ±ÑŠÑĞ²Ğ»ĞµĞ½Ğ¸Ğµ Ñ‚Ğ¾ĞºĞµĞ½Ğ° Ğ±Ğ¾Ñ‚Ğ° Ğ¸ id Ğ³Ñ€ÑƒĞ¿Ğ¿Ñ‹ Ğ´Ğ»Ñ Ğ´Ğ°Ğ»ÑŒĞ½ĞµĞ¹ÑˆĞµĞ¹ Ñ€Ğ°Ğ±Ğ¾Ñ‚Ñ‹
+# îáúÿâëåíèå òîêåíà áîòà è id ãğóïïû äëÿ äàëüíåéøåé ğàáîòû
 my $token = '6066175785:AAGbPy6vKuuneCAP8XI7XC8fJAl80nfeAfQ';
 my $chat_id = '-1001874774612';
 
-# ÑĞ¾Ğ·Ğ´Ğ°Ğ½Ğ¸Ğµ Ğ±Ğ°Ğ·Ğ¾Ğ²Ñ‹Ñ… ÑƒÑĞ»Ğ¾Ğ²Ğ¸Ğ¹: ÑĞ¾Ğ·Ğ´Ğ°Ğ½Ğ¸Ğµ Ğ±Ğ¾Ñ‚Ğ°, Ğ¿Ğ¾Ğ¸ÑĞº Ñ‡Ğ°Ñ‚Ğ°, Ğ·Ğ°Ğ´Ğ°Ğ½Ğ¸Ğµ Ğ½Ğ°Ñ‡Ğ°Ğ»ÑŒĞ½Ğ¾Ğ³Ğ¾ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ñ id Ğ¾Ğ±Ğ½Ğ¾Ğ²Ğ»ĞµĞ½Ğ¸Ñ
+# ñîçäàíèå áàçîâûõ óñëîâèé: ñîçäàíèå áîòà, ïîèñê ÷àòà, çàäàíèå íà÷àëüíîãî çíà÷åíèÿ id îáíîâëåíèÿ
 my $bot = WebProgTelegramClient->new( token => $token );
 my $chat = $bot->call( 'getChat', {chat_id => $chat_id} );
 my %all_members; 
 my $number_of_update = 0;
 
-# Ğ¾Ñ‚Ğ»Ğ°Ğ´Ğ¾Ñ‡Ğ½Ğ¾Ğµ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğµ Ğ² ĞºĞ°Ğ½Ğ°Ğ» Ğ¾ Ğ·Ğ°Ğ¿ÑƒÑĞºĞµ Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ñ‹
-# $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Ğ—Ğ°Ğ¿ÑƒÑĞº Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ñ‹" } );
+# îòëàäî÷íîå ñîîáùåíèå â êàíàë î çàïóñêå ïğîãğàììû
+# $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Çàïóñê ïğîãğàììû" } );
 
-# Ğ±ĞµÑĞºĞ¾Ğ½ĞµÑ‡Ğ½Ñ‹Ğ¹ Ñ†Ğ¸ĞºĞ» Ğ´Ğ»Ñ Ğ¿Ğ¾ÑÑ‚Ğ¾ÑĞ½Ğ½Ğ¾Ğ³Ğ¾ ĞºĞ¾Ğ½Ñ‚Ñ€Ğ¾Ğ»Ñ Ğ·Ğ° Ğ¸Ğ·Ğ¼ĞµĞ½ĞµĞ½Ğ¸ÑĞ¼Ğ¸ Ğ² Ğ³Ñ€ÑƒĞ¿Ğ¿Ğµ
+# áåñêîíå÷íûé öèêë äëÿ ïîñòîÿííîãî êîíòğîëÿ çà èçìåíåíèÿìè â ãğóïïå
 
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
 my $group_num = 3;
 
-# Ñ€Ğ°ÑÑĞ¼Ğ¾Ñ‚Ñ€ĞµĞ½Ğ¸Ğµ Ğ²ÑĞµÑ… Ğ¾Ğ±Ğ½Ğ¾Ğ²Ğ»ĞµĞ½Ğ¸Ğ¹
+# ğàññìîòğåíèå âñåõ îáíîâëåíèé
 foreach my $update ( @{ $updates->{result} } )
 {
-  # Ğ²Ñ‹Ğ´ĞµĞ»ĞµĞ½Ğ¸Ğµ Ğ¸Ğ· Ğ¾Ğ±Ğ½Ğ¾Ğ²Ğ»ĞµĞ½Ğ¸Ñ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ñ
+  # âûäåëåíèå èç îáíîâëåíèÿ ñîîáùåíèÿ
   my $upd_message = $update->{ message };
   if ( $upd_message )
   {
-    # Ğ²Ñ‹Ğ´ĞµĞ»ĞµĞ½Ğ¸Ğµ Ğ¸Ğ· ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ñ Ğ¾ÑĞ½Ğ¾Ğ²Ğ½Ñ‹Ñ… ĞµĞ³Ğ¾ Ñ…Ğ°Ñ€Ğ°ĞºÑ‚ĞµÑ€Ğ¸ÑÑ‚Ğ¸Ğº: id Ğ¸ Ğ¸Ğ¼Ñ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»Ñ, Ğ´Ğ°Ñ‚Ñƒ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ñ
+    # âûäåëåíèå èç ñîîáùåíèÿ îñíîâíûõ åãî õàğàêòåğèñòèê: id è èìÿ ïîëüçîâàòåëÿ, äàòó ñîîáùåíèÿ
     my $user_of_message_id = $upd_message->{ from }->{ id };
     my $user_of_message_name = $upd_message->{ from }->{ first_name };
+
     # my $date_of_message = $upd_message->{ date };
 
-    # ĞºĞ¾Ğ½Ğ²ĞµÑ€Ñ‚Ğ°Ñ†Ğ¸Ñ Ğ´Ğ°Ñ‚Ñ‹ Ğ² Ğ¾Ğ±Ñ‹Ñ‡Ğ½Ñ‹Ğ¹ Ñ„Ğ¾Ñ€Ğ¼Ğ°Ñ‚
+    # êîíâåğòàöèÿ äàòû â îáû÷íûé ôîğìàò
     # my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime( $date_of_message );
-
-    my $sth = $dbh->prepare("INSERT INTO student_id(student_name,group_num) VALUES (?,?)");
-    $sth->execute( $user_of_message_name, $group_num );
-
+    if (!$all_members{$user_of_message_id})
+    {
+      my $sth = $dbh->prepare("INSERT INTO student_id(student_name,group_num) VALUES (?,?)");
+      $sth->execute( $user_of_message_name, $group_num );
+      $all_members{$user_of_message_id} = 1;
+    }
   }
   $number_of_update = $update->{ update_id };
 }
