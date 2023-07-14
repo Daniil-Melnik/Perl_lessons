@@ -92,14 +92,10 @@ foreach my $update ( @{ $updates->{result} } )
       {
         $result = 0;
       }
-     $sth->execute($item->{id} ,$hw_num, $result, ($mday . "." . ($mon+1) . "." . ($year+1900)));
+     # $sth->execute($item->{id} ,$hw_num, $result, ($mday . "." . ($mon+1) . "." . ($year+1900)));
     }
-    
   }
   $number_of_update = $update->{ update_id };
 }
-
-my $name = <STDIN>;
-chomp $name;
-
-print $name;
+my $sth2 = $dbh->prepare("UPDATE webprog5_melnik_results SET result = ? WHERE id = ?");
+$sth2->execute(50, 73) or die "Unable to update\n";
