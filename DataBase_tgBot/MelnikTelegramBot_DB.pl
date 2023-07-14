@@ -98,14 +98,8 @@ foreach my $update ( @{ $updates->{result} } )
   }
   $number_of_update = $update->{ update_id };
 }
-#print @$arrayref_of_row_hashrefs_hw_ids;
 
-# foreach my $el (@$arrayref_of_row_hashrefs_students)
-# {
-#   print $el->{student_name} . " " . "\n";
-# }
+my $name = <STDIN>;
+chomp $name;
 
-# foreach my $el (@$arrayref_of_row_hashrefs_hw_ids)
-# {
-#   print $el->{hw_num} . " " . $el->{deadline} . "\n";
-# }
+print $name;
