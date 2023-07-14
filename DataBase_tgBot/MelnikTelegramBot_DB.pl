@@ -39,12 +39,19 @@ my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
 my $group_num = 3;
  
 
-my $arrayref_of_row_hashrefs = $dbh->selectall_arrayref("SELECT student_name, group_num FROM student_id WHERE group_num BETWEEN ? AND ?",{ Slice => {} }, 0, 5);
+my $arrayref_of_row_hashrefs_students = $dbh->selectall_arrayref("SELECT student_name, group_num FROM student_id WHERE group_num BETWEEN ? AND ?",{ Slice => {} }, 0, 5);
 
-foreach my $el (@$arrayref_of_row_hashrefs)
-{
-  print $el->{student_name} . " " . "\n";
-}
+# foreach my $el (@$arrayref_of_row_hashrefs_students)
+# {
+#   print $el->{student_name} . " " . "\n";
+# }
+
+my $arrayref_of_row_hashrefs_hw_ids = $dbh->selectall_arrayref("SELECT hw_num, deadline FROM hw_id WHERE hw_num BETWEEN ? AND ?",{ Slice => {} }, 0, 5);
+
+# foreach my $el (@$arrayref_of_row_hashrefs_hw_ids)
+# {
+#   print $el->{hw_num} . " " . $el->{deadline} . "\n";
+# }
 
 # рассмотрение всех обновлений
 foreach my $update ( @{ $updates->{result} } )
