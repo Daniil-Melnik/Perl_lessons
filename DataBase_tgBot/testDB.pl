@@ -1,5 +1,6 @@
+use strict;
+use warnings;
 use DBI;
-
 
 my $attr = {PrintError => 0, RaiseError => 0};
 my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
@@ -12,8 +13,16 @@ if (!$dbh) { die $DBI::errstr; }
 print "ok2\n";
 $dbh->do('SET NAMES cp1251');
 
+my $rv = $dbh->selectall_arrayref('SHOW TABLES');
 
+foreach my $db (@$rv)
+{
+    print @$db;
+}
 
-my $rv = $dbh->selectrow_arrayref('SHOW TABLES');
+my $sth = $dbh->prepare("INSERT INTO student_id(student_name,group_num) VALUES (?,?)");
+print "ok3\n";
+$sth->execute( 2107, 20 );
+print "ok4\n";
 
-die Dumper($rv);
+die "end";
