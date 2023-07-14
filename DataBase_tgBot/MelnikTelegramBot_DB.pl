@@ -25,11 +25,11 @@ my $bot = WebProgTelegramClient->new( token => $token );
 my $chat = $bot->call( 'getChat', { chat_id => $chat_id } );
 
 my %all_members;
-my %deadlines = ( 1 => "13.07.2023", 2 => "15.07.2023" );
-my $sth = $dbh->prepare( "INSERT INTO hw_id(hw_num,deadline) VALUES (?, ?)" );
+my %deadline = ( 1 => "13.07.2023", 2 => "15.07.2023" );
 
-$sth->execute( 1, $deadlines{1} );
-$sth->execute( 2, $deadlines{2} );
+my $sth = $dbh->prepare( "INSERT INTO hw_id(hw_num,deadline) VALUES (?, ?)" );
+$sth->execute( 1, $deadline{1} );
+$sth->execute( 2, $deadline{2} );
 
 my $number_of_update = 0;
 
@@ -47,16 +47,18 @@ foreach my $update ( @{ $updates->{result} } )
   
     if ( !$all_members{ $user_of_message_id } )
     {
-      $sth = $dbh->prepare( "INSERT INTO student_id(student_name, group_num) VALUES (?, ?)" );
+      $sth = $dbh->prepare( "INSERT INTO student_id (student_name, group_num) VALUES (?, ?)" );
       $sth->execute( $user_of_message_name, $group_num );
       $all_members{ $user_of_message_id } = 1;
     }
   }
   $number_of_update = $update->{ update_id };
 }
+
 my $arrayref_of_row_hashrefs_students;
 my $arrayref_of_row_hashrefs_hw_ids;
 $arrayref_of_row_hashrefs_students = $dbh->selectall_arrayref( "SELECT id, student_name, group_num FROM student_id WHERE group_num BETWEEN ? AND ?", { Slice => {} }, 0, 5 );
+
 foreach my $update ( @{ $updates->{result} } )
 {
   my $upd_message = $update->{ message };
@@ -76,12 +78,12 @@ foreach my $update ( @{ $updates->{result} } )
       } @$arrayref_of_row_hashrefs_students;
 
       my $sth = $dbh->prepare( "INSERT INTO webprog5_melnik_results(student_id, hw_num, result, date_of_complite) VALUES (?, ?, ?, ?)" );
-      my @spl = split( /\./, $deadlines{$hw_num} );
+      my @spl = split( /\./, $deadline{$hw_num} );
       # my $text = "23.22.22";
       # my @spl = split(/\./, $text); 
       my $result;
       # print @spl;
-      # print ($deadlines{$hw_num});
+      # print ($deadline{$hw_num});
       # print $spl[0] . "." . $spl[1] . "." . $spl[2] . "\n";
       if ( ( $year-1900 <= $spl[2] ) && ( $mday <= $spl[0] ) && ( $mon <= $spl[1]+1 ) )
       {
