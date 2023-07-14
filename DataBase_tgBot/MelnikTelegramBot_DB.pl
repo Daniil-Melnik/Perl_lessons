@@ -70,18 +70,19 @@ foreach my $update ( @{ $updates->{result} } )
     if ($upd_message->{text})
     {
       my ($hw_num) = $upd_message->{text} =~ /(\d+)/;
-      my ($item) = grep {
+      my ($item) = grep 
+      {
         $_->{ student_name } eq $user_of_message_name;
       } @$arrayref_of_row_hashrefs_students;
 
       my $sth = $dbh->prepare( "INSERT INTO webprog5_melnik_results(student_id, hw_num, result, date_of_complite) VALUES (?, ?, ?, ?)" );
       my @spl = split( /\./, $deadlines{$hw_num} );
-      #my $text = "23.22.22";
-      #my @spl = split(/\./, $text); 
+      # my $text = "23.22.22";
+      # my @spl = split(/\./, $text); 
       my $result;
-      #print @spl;
-      #print ($deadlines{$hw_num});
-      #print $spl[0] . "." . $spl[1] . "." . $spl[2] . "\n";
+      # print @spl;
+      # print ($deadlines{$hw_num});
+      # print $spl[0] . "." . $spl[1] . "." . $spl[2] . "\n";
       if ( ( $year-1900 <= $spl[2] ) && ( $mday <= $spl[0] ) && ( $mon <= $spl[1]+1 ) )
       {
         $result = 10;
@@ -90,7 +91,7 @@ foreach my $update ( @{ $updates->{result} } )
       {
         $result = 0;
       }
-     # $sth->execute($item->{id} ,$hw_num, $result, ($mday . "." . ($mon+1) . "." . ($year+1900)));
+      # $sth->execute($item->{id} ,$hw_num, $result, ($mday . "." . ($mon+1) . "." . ($year+1900)));
     }
   }
   $number_of_update = $update->{ update_id };
