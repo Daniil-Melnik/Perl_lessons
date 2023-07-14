@@ -25,7 +25,14 @@ my $chat_id = '-1001874774612';
 # создание базовых условий: создание бота, поиск чата, задание начального значения id обновления
 my $bot = WebProgTelegramClient->new( token => $token );
 my $chat = $bot->call( 'getChat', {chat_id => $chat_id} );
-my %all_members; 
+
+my %all_members;
+my %deadline = {1 => "13.07.2023", 2 => "15.07.2023"};
+my $sth = $dbh->prepare("INSERT INTO hw_id(hw_num,deadline) VALUES (?,?)");
+
+$sth->execute(1, $deadline{1});
+$sth->execute(2, $deadline{2});
+
 my $number_of_update = 0;
 
 # отладочное сообщение в канал о запуске программы
@@ -53,7 +60,7 @@ foreach my $update ( @{ $updates->{result} } )
     # my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime( $date_of_message );
     if (!$all_members{$user_of_message_id})
     {
-      my $sth = $dbh->prepare("INSERT INTO student_id(student_name,group_num) VALUES (?,?)");
+      $sth = $dbh->prepare("INSERT INTO student_id(student_name,group_num) VALUES (?,?)");
       $sth->execute( $user_of_message_name, $group_num );
       $all_members{$user_of_message_id} = 1;
     }
