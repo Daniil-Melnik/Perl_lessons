@@ -112,7 +112,7 @@ show_table();
 
 # show_table($dbh)
 # принимает на вход связь с БД, выводит в консоль таблицу результатов
-sub show_table 
+sub show_table  
 {
   shift;
   # выборка
