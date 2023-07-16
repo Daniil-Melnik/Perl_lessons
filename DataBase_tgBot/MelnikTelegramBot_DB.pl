@@ -36,6 +36,7 @@ my $number_of_update = 0;
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
 my $group_num = 3;
 
+# созранение данных в БД
 foreach my $update ( @{ $updates->{result} } )
 {
   my $upd_message = $update->{ message };
@@ -102,15 +103,19 @@ foreach my $update ( @{ $updates->{result} } )
 show_table();
 print "\n";
 
+# редактирование данных
 my $sth2 = $dbh->prepare("UPDATE webprog5_melnik_results SET result = ? WHERE id = ?");
 $sth2->execute( 8, 73 ) or die "Unable to update\n";
 $sth2->execute( 4, 76 ) or die "Unable to update\n";
 
 show_table();
 
+# show_table($dbh)
+# принимает на вход связь с БД, выводит в консоль таблицу результатов
 sub show_table 
 {
   shift;
+  # выборка
   my $sth = $dbh->prepare("SELECT * FROM webprog5_melnik_results;");
   $sth->execute();
   while (my @arr = $sth->fetchrow_array())
