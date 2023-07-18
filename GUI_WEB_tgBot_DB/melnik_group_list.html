@@ -63,8 +63,21 @@
           font-family: monospace;
           text-align: center;
       }
+      .btn{
+        background-color:#d7d5d9;
+        height: 40px;
+        width: 95px;
+        border: 1px solid #40af93;
+        text-align: center;
+        font-size: 1.5em;
+        font-family: monospace;
+      }
       .btn_a{
-        
+        text-decoration: none;
+      }
+      .poor_hat{
+        background-color: #018185;
+        border: 1px solid #018185;
       }
 
     </style>
@@ -75,14 +88,17 @@
         <tr class="tred">
           <td class="id_column_hat">id</td>
           <td class="tg_id_column_hat">id in telegram</td>
+          <td class="poor_hat"></td>
+          <td class="poor_hat"></td>
+          <td class="poor_hat"></td>
         </tr>
         <TMPL_LOOP NAME=INFO>
           <tr>
             <td class="id_column"><TMPL_VAR NAME=NAME></td>
             <td class="tg_id_column"><TMPL_VAR NAME=JOB></td>
-            <td class="btn"><a href="" class="btn_a"></a></td>
-            <td class="btn"><a href="" class="btn_a"></a></td>
-            <td class="btn"><a href="" class="btn_a"></a></td>
+            <td class="btn"><a href="" class="btn_a">members</a></td>
+            <td class="btn"><a href="" class="btn_a"></a>homeworks</td>
+            <td class="btn"><a href="" class="btn_a"></a>delete</td>
           </tr>
         </TMPL_LOOP>
       </table>
