@@ -77,11 +77,17 @@
         height: 40px;
         width: 95px;
         text-decoration: none;
+        color: #292b2f;
       }
+      .btn_a:hover{
+        color: #3bbfc3;
+      }
+
       .btn:hover{
         text-decoration: none;
         color: #3bbfc3;
         background-color: #292b2f;
+        transition: 1s;
       }
       .poor_hat{
         background-color: #018185;
@@ -105,8 +111,8 @@
             <td class="id_column"><TMPL_VAR NAME=ID></td>
             <td class="tg_id_column"><TMPL_VAR NAME=TG_ID></td>
             <td class="btn"><a href="" class="btn_a">members</a></td>
-            <td class="btn"><a href="" class="btn_a"></a>homeworks</td>
-            <td class="btn"><a href="" class="btn_a"></a>delete</td>
+            <td class="btn"><a href="" class="btn_a">homeworks</a></td>
+            <td class="btn"><a href="" class="btn_a">delete</a></td>
           </tr>
         </TMPL_LOOP>
       </table>
