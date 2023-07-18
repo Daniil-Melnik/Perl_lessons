@@ -3,25 +3,55 @@
   <head>
     <meta charset="utf-8">
     <title>GROUPS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      body{
+        background-color: #d7d5d9;
+      }
+      table{
+        border-collapse: collapse;
+        background-color: #3bbfc3;
+      }
+      .tg_id_column{
+        border: 1px solid #40af93;
+        width: 500px;
+        height: 60px;
+      }
+      .id_column{
+          border: 1px solid #40af93;
+          width: 90px;
+          height: 60px;
+      }
+
+      .tg_id_column_hat{
+        border: 1px solid #40af93;
+        width: 500px;
+        height: 60px;
+        background-color: #018185;
+      }
+
+      .id_column_hat{
+          border: 1px solid #40af93;
+          width: 90px;
+          height: 60px;
+          background-color: #018185;
+      }
+
+    </style>
   </head>
     <body>
       <h1>GROUPS</h1>
-      <div>
-        &nbsp 
-        TG ID  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    
-        TITLE  &nbsp&nbsp&nbsp&nbsp 
-        TASK   &nbsp&nbsp 
-        ADMIN 
-        <p>
-      </div>
-      <div>
-      </div>
-      <div>
+      <table>
+        <tr class="tred">
+          <td class="id_column_hat">id</td>
+          <td class="tg_id_column_hat">id in telegram</td>
+        </tr>
         <TMPL_LOOP NAME=INFO>
-          <TMPL_VAR NAME=NAME> &nbsp&nbsp&nbsp&nbsp     
-          <TMPL_VAR NAME=JOB> &nbsp&nbsp     
-          <br>  
+          <tr>
+            <td class="id_column"><TMPL_VAR NAME=NAME></td>
+            <td class="tg_id_column"><TMPL_VAR NAME=JOB></td>
+          </tr>
         </TMPL_LOOP>
-      </div>
+      </table>
     </body>
 </html>
