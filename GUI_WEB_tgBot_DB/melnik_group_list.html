@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <title>Test Template</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+
+<body>
+    <div class="table-container">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>job</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <TMPL_LOOP NAME=INFO>
+                    <tr>
+                        <td>
+                            <TMPL_VAR NAME=name>
+                        </td>
+                        <td>
+                            <TMPL_VAR NAME=job>
+                        </td>
+                    </tr>
+                </TMPL_LOOP>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
