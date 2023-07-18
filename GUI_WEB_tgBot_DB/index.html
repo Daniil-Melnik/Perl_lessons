@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<TMPL_LOOP NAME=EMPLOYEE_INFO>
+    Name: <TMPL_VAR NAME=NAME> <br>
+    Job:  <TMPL_VAR NAME=JOB>  <p>
+ </TMPL_LOOP>
+
 <html lang="ru">
   <head>
     <meta charset="utf-8">
@@ -6,6 +12,6 @@
   </head>
   <body>
     <h1>Привет, мир!</h1>
-    <p>Это веб-страница.</p>
+    <a href=”./test.pl”>Группы</a>
  </body>
 </html>
