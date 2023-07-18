@@ -1,37 +1,27 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-
-<head>
-    
-    <title>Test Template</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-</head>
-
-<body>
-    <div class="table-container">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>name</th>
-                    <th>job</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <TMPL_LOOP NAME=INFO>
-                    <tr>
-                        <td>
-                            <TMPL_VAR NAME=name>
-                        </td>
-                        <td>
-                            <TMPL_VAR NAME=job>
-                        </td>
-                    </tr>
-                </TMPL_LOOP>
-            </tbody>
-        </table>
-    </div>
-
-</body>
-
+  <head>
+    <meta charset="utf-8">
+    <title>GROUPS</title>
+  </head>
+    <body>
+      <h1>GROUPS</h1>
+      <div>
+        &nbsp 
+        TG ID  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    
+        TITLE  &nbsp&nbsp&nbsp&nbsp 
+        TASK   &nbsp&nbsp 
+        ADMIN 
+        <p>
+      </div>
+      <div>
+      </div>
+      <div>
+        <TMPL_LOOP NAME=INFO>
+          <TMPL_VAR NAME=NAME> &nbsp&nbsp&nbsp&nbsp     
+          <TMPL_VAR NAME=JOB> &nbsp&nbsp     
+          <br>  
+        </TMPL_LOOP>
+      </div>
+    </body>
 </html>
