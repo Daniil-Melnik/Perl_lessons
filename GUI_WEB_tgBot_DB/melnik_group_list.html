@@ -8,6 +8,35 @@
       body{
         background-color: #d7d5d9;
       }
+      .form{
+        position: absolute;
+        left: 10px;
+        list-style: none;
+      }
+      .add_btn{
+        width: 50px;
+        height: 30px;
+        background-color: #018185;
+        color: #d7d5d9;
+        font-size: 1.5em;
+        font-family: monospace;
+        border: none;
+        text-align: center;
+        transition: 1s;
+        position: absolute;
+        left: 75px;
+      }
+      .add_btn:hover{
+        background-color: #40af93;
+        color: #292b2f;
+      }
+      .field{
+        margin-bottom: 5px;
+        width: 200px;
+        height: 30px;
+        border: 0px;
+        font-size: 1em;
+      }
       table{
         border-collapse: collapse;
         background-color: #3bbfc3;
@@ -93,6 +122,13 @@
         background-color: #018185;
         border: 1px solid #018185;
       }
+      .discr{
+        text-align: center;
+        font-size: 1.5em;
+        font-family: monospace;
+        margin-bottom: 3px;
+     }
+
 
     </style>
   </head>
@@ -112,9 +148,19 @@
             <td class="tg_id_column"><TMPL_VAR NAME=TG_ID></td>
             <td class="btn"><a href="" class="btn_a">members</a></td>
             <td class="btn"><a href="" class="btn_a">homeworks</a></td>
-            <td class="btn"><a href="" class="btn_a">delete</a></td>
+            <td class="btn"><a href="" class="btn_a">results</a></td>
           </tr>
         </TMPL_LOOP>
       </table>
+
+      <!-- <form action="/cgi-bin/melnik_add_group.pl" method="post" class="form">
+        <li class="discr">add new</li>
+        <li><input name="GROUP_TG_ID" placeholder="group id"maxlength="14" size="10" class="field"></li>
+        <button type="submit" class="add_btn">add</button>
+        </form> -->
+        <form action="/cgi-bin/melnik_add_group.pl" method="post">
+          <input name="GROUP_ID" placeholder="group id"maxlength="13" size="10">  &nbsp
+          <button type="submit">ADD NEW</button>
+          </form>
     </body>
 </html>
