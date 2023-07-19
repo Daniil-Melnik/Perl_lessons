@@ -12,7 +12,7 @@ $io_cgi->get_params();
 my $group_id = $io_cgi->param('group_id');
 
 
-while (!looks_like_number($group_id)){
+
   my $attr = { PrintError => 0, RaiseError => 1 };
   my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
   my $username = "webprog5_melnik";
@@ -24,6 +24,6 @@ while (!looks_like_number($group_id)){
 
   print "Location: melnik_group_list.pl\n\n"; 
   print "Content-type: text/html\n\n"; 
-}
+
 
 

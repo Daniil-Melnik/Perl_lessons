@@ -21,17 +21,18 @@ my $dbh = DBI->connect( $data_source, $username, $password, $attr );
 if (!$dbh) { die $DBI::errstr; }
 
 $dbh->do('SET NAMES cp1251');
-my $arrayref_of_hw = $dbh->selectall_arrayref( "SELECT * FROM homework_id", { Slice => {} });
+my $arrayref_of_hw = $dbh->selectall_arrayref( "SELECT num, deadline, id, group_tg_id FROM homework_id", { Slice => {} });
 my @fin_arr;
 
 foreach my $row (@$arrayref_of_hw)
 {
   if ($row->{group_tg_id} == $group_id)
   {
+    my %res = ( id => $row->{id}, num => $row->{num}, deadline => $row->{deadline});
     push( @fin_arr, \%res );
   }
 }
-my $template = HTML::Template->new(filename => "melnik_results.html");
+my $template = HTML::Template->new(filename => "melnik_homework.html");
 
 $template->param(info => \@fin_arr);
 #$template->param(info => [{id => 1, student_id => 25, hw_num => 2, result => 10, date_of_complite => "25.02.2023"}]);

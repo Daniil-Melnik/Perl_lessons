@@ -14,7 +14,7 @@ my $dbh = DBI->connect( $data_source, $username, $password, $attr );
 if (!$dbh) { die $DBI::errstr; }
 $dbh->do('SET NAMES cp1251');
 
-my $arrayref_of_groups = $dbh->selectall_arrayref( "SELECT id, tg_id FROM group_id WHERE id BETWEEN ? AND ?", { Slice => {} }, 0, 5 );
+my $arrayref_of_groups = $dbh->selectall_arrayref( "SELECT id, tg_id FROM group_id WHERE id BETWEEN ? AND ?", { Slice => {} }, 0, 50 );
 
 my $template = HTML::Template->new(filename => "melnik_group_list.html");
 

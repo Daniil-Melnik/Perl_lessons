@@ -147,15 +147,15 @@
             <td class="id_column"><TMPL_VAR NAME=ID></td>
             <td class="tg_id_column"><TMPL_VAR NAME=TG_ID></td>
             <td class="btn"><a href="melnik_members.pl?group=<TMPL_VAR NAME=TG_ID>" class="btn_a">members</a></td>
-            <td class="btn"><a href="" class="btn_a">homeworks</a></td>
-            <td class="btn"><a href="" class="btn_a">results</a></td>
+            <td class="btn"><a href="melnik_homework.pl?group=<TMPL_VAR NAME=TG_ID>" class="btn_a">homeworks</a></td>
+            <td class="btn"><a href="melnik_results.pl?group=<TMPL_VAR NAME=TG_ID>" class="btn_a">results</a></td>
           </tr>
         </TMPL_LOOP>
       </table>
 
       <form action="/cgi-bin/melnik_add_group.pl" method="post" class="form">
         <li class="discr">add new</li>
-        <li><input name="group_id" placeholder="group id"maxlength="14" size="10" class="field"></li>
+        <li><input name="group_id" placeholder="group id" maxlength="14" size="10" class="field"></li>
         <button type="submit" class="add_btn">add</button>
         </form>
     </body>

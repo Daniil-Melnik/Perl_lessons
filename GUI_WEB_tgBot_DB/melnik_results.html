@@ -5,13 +5,8 @@
     <title>RESULTS OF GROUP</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-body{
+      body{
         background-color: #d7d5d9;
-      }
-      .form{
-        position: absolute;
-        left: 10px;
-        list-style: none;
       }
       .add_btn{
         width: 50px;
@@ -30,23 +25,16 @@ body{
         background-color: #40af93;
         color: #292b2f;
       }
-      .field{
-        margin-bottom: 5px;
-        width: 200px;
-        height: 30px;
-        border: 0px;
-        font-size: 1em;
-      }
       table{
         border-collapse: collapse;
         background-color: #3bbfc3;
         position: absolute;
-        left: 320px;
+        left: 400px;
         top: 100px;
       }
       .tg_id_column{
         border: 1px solid #40af93;
-        width: 500px;
+        width: 250px;
         height: 40px;
         font-size: 1.5em;
         font-family: monospace;
@@ -63,11 +51,35 @@ body{
           text-align: left;
           color: #516066;
           margin-left: 2px;
+          text-align: center;
+      }
+
+      .id_date_column{
+      border: 1px solid #40af93;
+          width: 120px;
+          height: 40px;
+          font-size: 1.5em;
+          font-family: monospace;
+          text-align: left;
+          color: #516066;
+          margin-left: 2px;
+	  text-align: center;
+      }
+     .id_date_column_hat{
+      border: 1px solid #40af93;
+      width: 120px;
+      height: 40px;
+      background-color: #018185;
+      font-size: 1.5em;
+      font-family: monospace;
+      text-align: center;
+      color: #d7d5d9;
+
       }
 
       .tg_id_column_hat{
         border: 1px solid #40af93;
-        width: 500px;
+        width: 250px;
         height: 40px;
         background-color: #018185;
         font-size: 1.5em;
@@ -136,18 +148,18 @@ body{
       <table>
         <tr class="tred">
           <td class="id_column_hat">id</td>
-          <td class="tg_id_column_hat">student_id</td>
+          <td class="tg_id_column_hat">student name</td>
           <td class="id_column_hat">homework</td>
           <td class="id_column_hat">result</td>
-          <td class="id_column_hat">date of complete</td>
+          <td class="id_date_column_hat">date of complete</td>
         </tr>
         <TMPL_LOOP NAME=INFO>
           <tr>
             <td class="id_column"><TMPL_VAR NAME=ID></td>
-            <td class="id_column"><TMPL_VAR NAME=STUDENT_ID></td>
+            <td class="tg_id_column"><TMPL_VAR NAME=STUDENT_ID></td>
             <td class="id_column"><TMPL_VAR NAME=HW_NUM></td>
             <td class="id_column"><TMPL_VAR NAME=RESULT></td>
-            <td class="id_column"><TMPL_VAR NAME=DATE_OF_COMPLITE></td>
+            <td class="id_date_column"><TMPL_VAR NAME=DATE_OF_COMPLITE></td>
           </tr>
         </TMPL_LOOP>
       </table>
