@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MEMBERS OF GROUP</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+    </style>
+  </head>
+    <body>
+      <h1>MEMBERS</h1>
+      <table>
+        <tr class="tred">
+          <td class="id_column_hat">id</td>
+          <td class="tg_id_column_hat">name</td>
+        </tr>
+        <TMPL_LOOP NAME=INFO>
+          <tr>
+            <td class="id_column"><TMPL_VAR NAME=ID></td>
+            <td class="tg_id_column"><TMPL_VAR NAME=NAME></td>
+          </tr>
+        </TMPL_LOOP>
+      </table>
+    </body>
+</html>

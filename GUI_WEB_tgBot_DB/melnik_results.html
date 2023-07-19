@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>GROUPS</title>
+    <title>RESULTS OF GROUP</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-      body{
+body{
         background-color: #d7d5d9;
       }
       .form{
@@ -129,34 +129,27 @@
         margin-bottom: 3px;
      }
 
-
     </style>
   </head>
     <body>
-      <h1>GROUPS</h1>
+      <h1>RESULTS</h1>
       <table>
         <tr class="tred">
           <td class="id_column_hat">id</td>
-          <td class="tg_id_column_hat">id in telegram</td>
-          <td class="poor_hat"></td>
-          <td class="poor_hat"></td>
-          <td class="poor_hat"></td>
+          <td class="tg_id_column_hat">student_id</td>
+          <td class="id_column_hat">homework</td>
+          <td class="id_column_hat">result</td>
+          <td class="id_column_hat">date of complete</td>
         </tr>
         <TMPL_LOOP NAME=INFO>
           <tr>
             <td class="id_column"><TMPL_VAR NAME=ID></td>
-            <td class="tg_id_column"><TMPL_VAR NAME=TG_ID></td>
-            <td class="btn"><a href="melnik_members.pl?group=<TMPL_VAR NAME=TG_ID>" class="btn_a">members</a></td>
-            <td class="btn"><a href="" class="btn_a">homeworks</a></td>
-            <td class="btn"><a href="" class="btn_a">results</a></td>
+            <td class="id_column"><TMPL_VAR NAME=STUDENT_ID></td>
+            <td class="id_column"><TMPL_VAR NAME=HW_NUM></td>
+            <td class="id_column"><TMPL_VAR NAME=RESULT></td>
+            <td class="id_column"><TMPL_VAR NAME=DATE_OF_COMPLITE></td>
           </tr>
         </TMPL_LOOP>
       </table>
-
-      <form action="/cgi-bin/melnik_add_group.pl" method="post" class="form">
-        <li class="discr">add new</li>
-        <li><input name="group_id" placeholder="group id"maxlength="14" size="10" class="field"></li>
-        <button type="submit" class="add_btn">add</button>
-        </form>
     </body>
 </html>
