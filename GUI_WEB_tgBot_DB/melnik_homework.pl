@@ -21,16 +21,19 @@ my $dbh = DBI->connect( $data_source, $username, $password, $attr );
 if (!$dbh) { die $DBI::errstr; }
 
 $dbh->do('SET NAMES cp1251');
-my $arrayref_of_res = $dbh->selectall_arrayref( "SELECT id, student_id, hw_num, result, date_of_complite FROM webprog5_melnik_results", { Slice => {} });
+my $arrayref_of_hw = $dbh->selectall_arrayref( "SELECT * FROM homework_id", { Slice => {} });
+my @fin_arr;
 
-foreach $row (@$arrayref_of_res)
+foreach my $row (@$arrayref_of_hw)
 {
-    my $name = $dbh->selectrow_hashref("SELECT name FROM table WHERE id=?", $row->{student_id});
-    $row->{student_id} = $name;
+  if ($row->{group_tg_id} == $group_id)
+  {
+    push( @fin_arr, \%res );
+  }
 }
 my $template = HTML::Template->new(filename => "melnik_results.html");
 
-$template->param(info => $arrayref_of_res);
+$template->param(info => \@fin_arr);
 #$template->param(info => [{id => 1, student_id => 25, hw_num => 2, result => 10, date_of_complite => "25.02.2023"}]);
 
 print "Content-Type: text/html\n";
