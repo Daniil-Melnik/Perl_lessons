@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
-use lib '.';
-use CGISParams;
-use DBConnect;
+use lib './';
+use CGI;
+use DataBase;
 
 # use DBI;
 # use HTML::Template;
@@ -17,23 +17,23 @@ eval
   my $database    = 'webprog5_melniktgbot';
   my $db_username = "webprog5_melnik";
   my $db_password = "2WsxcdE3";
-  my $data_source = "DBI:mysql:$database:localhost";
+  my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
 
   # Create a new connection link
-  my $link = DBConnect->new( $data_source, $db_username, $db_password, $attr );
+  my $link = DataBase->new( $data_source, $db_username, $db_password, $attr );
 
   # Get the current link to the connection
   my $dbh = $link->get_dbh();
   $dbh->do('SET NAMES cp1251');
 
   # Get cgi params 
-  my $cgi = CGISParams->new;
+  my $cgi = CGI->new;
   $cgi->get_params();
   my $cl = $cgi->param('class');
   my $event = $cgi->param('event');
 
-  # my $cl = "NikitinGroup";
-  # my $event = "show_list";
+  #my $cl = "melnik_group_list";
+  #my $event = "show_list";
 
   # Create a new instance of the requested class
   require $cl . ".pl";

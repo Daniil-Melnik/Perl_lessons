@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 # must to rebrend
-package DBConnect;
+package DataBase;
 
 use strict;
 use warnings;

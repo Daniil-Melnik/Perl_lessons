@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 # must to rebrend
-package CGISParams;
+package CGI;
 
 use strict;
 use warnings;
