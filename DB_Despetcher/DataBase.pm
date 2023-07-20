@@ -1,40 +1,59 @@
 #!/usr/bin/perl -w
-
-package DataBase;
+# must to rebrend
+package DBConnect;
 
 use strict;
 use warnings;
 use DBI;
-use Data::Dumper;
 
-our $singleton = undef;
+my $instance = undef;
 
+
+# Create a new connection link
 sub new 
 {
-  my $class = @_;
-  my $conf = @_;
+  my ($class, $dsn, $user, $pass, $attr) = @_;
 
-  return $singleton if defined $singleton;
+  unless ($instance)
+  {
+    $instance = bless {
+                        dsn => $dsn,
+                        user => $user,
+                        pass => $pass,
+                        attr => $attr,
+                      }, $class;
+    
+    $instance->connect();
+  }
 
-  my $self = {
-    config => $conf,
-  };
-
-  my $dbh = DBI->connect( $conf->{data_place}, $config->{user}, $config->{pass}, $config->{attr} );
-  if (!$dbh) { die $DBI::errstr; }
-  $dbh->do('SET NAMES cp1251');
-
-  $self->{dbh} = $dbh;
-
-  $singleton = bless($self, $class);
-  return $singleton;
+  return $instance;
 }
 
 
+# Connecting to the database
+sub connect 
+{
+  my ($self) = @_;
+
+  $self->{dbh} = DBI->connect( $self->{dsn}, $self->{user}, $self->{pass}, $self->{attr} );
+}
+
+
+# Get the current link to the connection
+sub get_dbh
+{
+  my ($self) = @_;
+
+  return $self->{dbh};
+}
+
+# Closing the connection to the database
 sub disconnect
 {
   my ($self) = @_;
 
-  $self->{dbh}->disconnect;
+  $self->{dbh}->disconnect if $self->{dbh};
+  undef $instance;
 }
+
 1;
