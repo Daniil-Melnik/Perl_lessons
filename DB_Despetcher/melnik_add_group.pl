@@ -6,11 +6,9 @@ use strict;
 use warnings;
 use DBI;
 
-#my $io_cgi = 'io_cgi'->new;
-#$io_cgi->get_params();
-#my $group_id = $io_cgi->param('group_id');
-
-my $group_id = 990;
+my $io_cgi = 'io_cgi'->new;
+$io_cgi->get_params();
+my $group_id = $io_cgi->param('group_id');
 
 my $attr = { PrintError => 0, RaiseError => 1 };
 my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
