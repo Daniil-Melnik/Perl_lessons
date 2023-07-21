@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GROUPS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      body{
+        background-color: #d7d5d9;
+      }
+      .form{
+        position: absolute;
+        left: 10px;
+        list-style: none;
+      }
+      .add_btn{
+        width: 50px;
+        height: 30px;
+        background-color: #018185;
+        color: #d7d5d9;
+        font-size: 1.5em;
+        font-family: monospace;
+        border: none;
+        text-align: center;
+        transition: 1s;
+        position: absolute;
+        left: 75px;
+      }
+      .add_btn:hover{
+        background-color: #40af93;
+        color: #292b2f;
+      }
+      .field{
+        margin-bottom: 5px;
+        width: 200px;
+        height: 30px;
+        border: 0px;
+        font-size: 1em;
+      }
+      table{
+        border-collapse: collapse;
+        background-color: #3bbfc3;
+        position: absolute;
+        left: 320px;
+        top: 100px;
+      }
+      .tg_id_column{
+        border: 1px solid #40af93;
+        width: 500px;
+        height: 40px;
+        font-size: 1.5em;
+        font-family: monospace;
+        text-align: left;
+        color: #516066;
+        margin-left: 2px;
+      }
+      .id_column{
+          border: 1px solid #40af93;
+          width: 90px;
+          height: 40px;
+          font-size: 1.5em;
+          font-family: monospace;
+          text-align: left;
+          color: #516066;
+          margin-left: 2px;
+      }
+
+      .tg_id_column_hat{
+        border: 1px solid #40af93;
+        width: 500px;
+        height: 40px;
+        background-color: #018185;
+        font-size: 1.5em;
+        font-family: monospace;
+        text-align: center;
+        color: #d7d5d9;
+      }
+
+      .id_column_hat{
+          border: 1px solid #40af93;
+          width: 90px;
+          height: 40px;
+          background-color: #018185;
+          font-size: 1.5em;
+          font-family: monospace;
+          text-align: center;
+          color: #d7d5d9;
+      }
+      h1{
+          color: #292b2f;
+          font-size: 3.5em;
+          font-family: monospace;
+          text-align: center;
+      }
+      .btn{
+        background-color:#d7d5d9;
+        height: 40px;
+        width: 95px;
+        border: 1px solid #40af93;
+        text-align: center;
+        font-size: 1.5em;
+        font-family: monospace;
+        color: #516066;
+      }
+      .btn_a{
+        height: 40px;
+        width: 95px;
+        text-decoration: none;
+        color: #292b2f;
+      }
+      .btn_a:hover{
+        color: #3bbfc3;
+      }
+
+      .btn:hover{
+        text-decoration: none;
+        color: #3bbfc3;
+        background-color: #292b2f;
+        transition: 1s;
+      }
+      .poor_hat{
+        background-color: #018185;
+        border: 1px solid #018185;
+      }
+      .discr{
+        text-align: center;
+        font-size: 1.5em;
+        font-family: monospace;
+        margin-bottom: 3px;
+     }
+
+
+    </style>
+  </head>
+    <body>
+      <h1>GROUPS</h1>
+      <table>
+        <tr class="tred">
+          <td class="id_column_hat">id</td>
+          <td class="tg_id_column_hat">id in telegram</td>
+          <td class="poor_hat"></td>
+          <td class="poor_hat"></td>
+          <td class="poor_hat"></td>
+        </tr>
+        <TMPL_LOOP NAME=INFO>
+          <tr>
+            <td class="id_column"><TMPL_VAR NAME=ID></td>
+            <td class="tg_id_column"><TMPL_VAR NAME=TG_ID></td>
+            <td class="btn"><a href="melnik_dsp.pl?class=melnik_members&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">members</a></td>
+            <td class="btn"><a href="melnik_dsp.pl?class=melnik_homework&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">homeworks</a></td>
+            <td class="btn"><a href="melnik_dsp.pl?class=melnik_results&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">results</a></td>
+          </tr>
+        </TMPL_LOOP>
+      </table>
+
+      <!-- <form action="melnik_dsp.pl" method="post" class="form">
+        <li class="discr">add new</li>
+        <li><input name="group_id" placeholder="group id" maxlength="14" size="10" class="field"></li>
+        <button type="submit" class="add_btn">add</button>
+        </form> -->
+    </body>
+</html>

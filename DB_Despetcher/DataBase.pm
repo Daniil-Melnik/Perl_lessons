@@ -1,36 +1,25 @@
 #!/usr/bin/perl -w
-# must to rebrend
 package DataBase;
 
 use strict;
 use warnings;
 use DBI;
 
-my $instance = undef;
+my $db_obj = undef;
 
-
-# Create a new connection link
 sub new 
 {
   my ($class, $dsn, $user, $pass, $attr) = @_;
 
-  unless ($instance)
+  unless ($db_obj)
   {
-    $instance = bless {
-                        dsn => $dsn,
-                        user => $user,
-                        pass => $pass,
-                        attr => $attr,
-                      }, $class;
-    
-    $instance->connect();
+    $db_obj = bless { dsn => $dsn, user => $user, pass => $pass, attr => $attr, }, $class;
+    $db_obj->connect();
   }
-
-  return $instance;
+  return $db_obj;
 }
 
 
-# Connecting to the database
 sub connect 
 {
   my ($self) = @_;
@@ -38,8 +27,6 @@ sub connect
   $self->{dbh} = DBI->connect( $self->{dsn}, $self->{user}, $self->{pass}, $self->{attr} );
 }
 
-
-# Get the current link to the connection
 sub get_dbh
 {
   my ($self) = @_;
@@ -47,13 +34,12 @@ sub get_dbh
   return $self->{dbh};
 }
 
-# Closing the connection to the database
 sub disconnect
 {
   my ($self) = @_;
 
   $self->{dbh}->disconnect if $self->{dbh};
-  undef $instance;
+  undef $db_obj;
 }
 
 1;

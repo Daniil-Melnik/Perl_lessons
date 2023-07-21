@@ -4,7 +4,6 @@ package melnik_members;
 
 use strict;
 use warnings;
-
 use HTML::Template;
 use DataBase;
 
@@ -13,8 +12,8 @@ sub new
 {
     my $class = shift;
     my $self = {};
-
     bless $self, $class;
+
     return $self;
 }
 
@@ -22,11 +21,9 @@ sub new
 sub show_list
 {
   my $cgi = CGI->new;
-
   my $group_id = $cgi->param('id');
-
-  my $link = DataBase->new();
-  my $dbh = $link->get_dbh();
+  my $db_obj = DataBase->new();
+  my $dbh = $db_obj->get_dbh();
 
   my $template = HTML::Template->new( filename => "melnik_members.html" );
 
@@ -37,8 +34,6 @@ sub show_list
 
   print "Content-Type: text/html\n";
   print "Charset: windows-1251\n\n";
-  # $template->param(class => $cl);
-  # $template->param(event => $event);
   print $template->output;
 }
 

@@ -1,23 +1,23 @@
 #!/usr/bin/perl -w
-# must to rebrend
 package CGI;
 
 use strict;
 use warnings;
-require 'io_cgi.pl';
+require 'io_cgi.pm';
 
-my $io_cgi = undef;
+my $cgi_obj = undef;
 
 sub new 
 {
   my $class = shift;
 
-  unless ($io_cgi)
+  unless ($cgi_obj)
   {
-    $io_cgi = 'io_cgi'->new();
+    $cgi_obj = 'io_cgi'->new();
   }
 
-  return $io_cgi;
+  return $cgi_obj;
 }
 
 1;
+
