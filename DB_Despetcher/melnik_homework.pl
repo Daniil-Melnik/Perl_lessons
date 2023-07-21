@@ -23,6 +23,9 @@ sub show_list
 {
   my $cgi = CGI->new;
 
+  $cgi->get_params();
+  my $group_id = $cgi->param('group');
+
   my $template = HTML::Template->new( filename => "melnik_homework.html" );
 
   my $link = DataBase->new();
