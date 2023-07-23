@@ -102,6 +102,16 @@
         font-family: monospace;
         color: #516066;
       }
+      .btn_del{
+        background-color:#d7d5d9;
+        height: 40px;
+        width: 95px;
+        border: 1px solid #40af93;
+        text-align: center;
+        font-size: 1.5em;
+        font-family: monospace;
+        color: #516066;
+      }
       .btn_a{
         height: 40px;
         width: 95px;
@@ -116,6 +126,12 @@
         text-decoration: none;
         color: #3bbfc3;
         background-color: #292b2f;
+        transition: 1s;
+      }
+      .btn_del:hover{
+        text-decoration: none;
+        color: #292b2f;
+        background-color: red;
         transition: 1s;
       }
       .poor_hat{
@@ -141,6 +157,7 @@
           <td class="poor_hat"></td>
           <td class="poor_hat"></td>
           <td class="poor_hat"></td>
+          <td class="poor_hat"></td>
         </tr>
         <TMPL_LOOP NAME=INFO>
           <tr>
@@ -149,14 +166,15 @@
             <td class="btn"><a href="melnik_dsp.pl?class=melnik_members&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">members</a></td>
             <td class="btn"><a href="melnik_dsp.pl?class=melnik_homework&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">homeworks</a></td>
             <td class="btn"><a href="melnik_dsp.pl?class=melnik_results&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">results</a></td>
+            <td class="btn_del"><a href="" class="btn_a">delete</a></td>
           </tr>
         </TMPL_LOOP>
       </table>
 
       <form action="melnik_dsp.pl" method="post" class="form">
         <input type="hidden" value="melnik_group_list" name="class" readonly>
-        <input name="tg_id" type="text" placeholder="tg id группы">
-        <button type="submit" name="event" value="add">Добавить</button>
+        <li><input name="tg_id" type="text" placeholder="tg id группы" class="field"></li>
+        <li><button type="submit" name="event" value="add" class="add_btn">Добавить</button></li>
     </form>
     </body>
 </html>
