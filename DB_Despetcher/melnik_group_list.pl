@@ -6,6 +6,8 @@ use strict;
 use warnings;
 use HTML::Template;
 use DataBase;
+use Regexp::Common;
+
 
 my $cgi = CGI->new;
 
@@ -41,13 +43,14 @@ sub add
   my $self = shift;
   my $group_id = $cgi->param( 'tg_id' );
   #my $group_id = 8888;
+  if ($group_id =~ /$RE{num}{real}/)
+  {
+    my $link = DataBase->new();
+    my $dbh = $link->get_dbh();
 
-  my $link = DataBase->new();
-  my $dbh = $link->get_dbh();
-
-  my $sth = $dbh->prepare( "INSERT INTO group_id (tg_id) VALUES (?);" );
-  $sth->execute($group_id);
-
+    my $sth = $dbh->prepare( "INSERT INTO group_id (tg_id) VALUES (?);" );
+    $sth->execute($group_id);
+  }
   $self->show_list;
 }
 
