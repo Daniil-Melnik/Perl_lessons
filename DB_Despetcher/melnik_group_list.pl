@@ -36,11 +36,11 @@ sub show_list
 }
 
 
-sub add_group
+sub add
 {
   my $self = shift;
-
-  my $group_id = $cgi->param_value( 'tg_id' );
+  my $group_id = $cgi->param( 'tg_id' );
+  #my $group_id = 8888;
 
   my $link = DataBase->new();
   my $dbh = $link->get_dbh();
@@ -48,7 +48,7 @@ sub add_group
   my $sth = $dbh->prepare( "INSERT INTO group_id (tg_id) VALUES (?);" );
   $sth->execute($group_id);
 
-  $self->show_groups;
+  $self->show_list;
 }
 
 1
