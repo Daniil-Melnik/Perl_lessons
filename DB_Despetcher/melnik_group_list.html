@@ -153,10 +153,10 @@
         </TMPL_LOOP>
       </table>
 
-      <!-- <form action="melnik_dsp.pl" method="post" class="form">
-        <li class="discr">add new</li>
-        <li><input name="group_id" placeholder="group id" maxlength="14" size="10" class="field"></li>
-        <button type="submit" class="add_btn">add</button>
-        </form> -->
+      <form action="melnik_dsp.pl" method="post" class="form">
+        <input type="hidden" value="melnik_group_list" name="class" readonly>
+        <input name="tg_id" type="text" placeholder="tg id группы">
+        <button type="submit" name="event" value="add">Добавить</button>
+    </form>
     </body>
 </html>

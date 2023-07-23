@@ -7,6 +7,7 @@ use warnings;
 use HTML::Template;
 use DataBase;
 
+my $cgi = CGI->new;
 
 sub new
 {
@@ -20,7 +21,6 @@ sub new
 
 sub show_list
 {
-  my $cgi = CGI->new;
   my $template = HTML::Template->new( filename => "melnik_group_list.html" );
   my $db_obj = DataBase->new();
   my $dbh = $db_obj->get_dbh();
@@ -35,21 +35,21 @@ sub show_list
   print $template->output;
 }
 
-# sub add 
-# {
-#   my $cgi = CGI->new;
-#   $cgi->get_params();
-#   my $group_id = $cgi->param('group_id');
 
-#   my $link = DataBase->new();
-#   my $dbh = $link->get_dbh();
+sub add_group
+{
+  my $self = shift;
 
-#   my $sth = $dbh->prepare( "INSERT INTO group_id (tg_id) VALUES (?);" );
-#   $sth->execute($group_id);
+  my $group_id = $cgi->param_value( 'tg_id' );
 
-#   print "Location: melnik_group_list.pl\n\n"; 
-#   print "Content-type: text/html\n\n"; 
-# }
+  my $link = DataBase->new();
+  my $dbh = $link->get_dbh();
+
+  my $sth = $dbh->prepare( "INSERT INTO group_id (tg_id) VALUES (?);" );
+  $sth->execute($group_id);
+
+  $self->show_groups;
+}
 
 1
 
