@@ -166,7 +166,7 @@
             <td class="btn"><a href="melnik_dsp.pl?class=melnik_members&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">members</a></td>
             <td class="btn"><a href="melnik_dsp.pl?class=melnik_homework&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">homeworks</a></td>
             <td class="btn"><a href="melnik_dsp.pl?class=melnik_results&event=show_list&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">results</a></td>
-            <td class="btn_del"><a href="" class="btn_a">delete</a></td>
+            <td class="btn_del"><a href="melnik_dsp.pl?class=melnik_group_list&event=delete&id=<TMPL_VAR NAME=TG_ID>" class="btn_a">delete</a></td>
           </tr>
         </TMPL_LOOP>
       </table>
@@ -174,7 +174,7 @@
       <form action="melnik_dsp.pl" method="post" class="form">
         <input type="hidden" value="melnik_group_list" name="class" readonly>
         <li><input name="tg_id" type="text" placeholder="tg id группы" class="field"></li>
-        <li><button type="submit" name="event" value="add" class="add_btn">Добавить</button></li>
+        <li><button type="submit" name="event" value="add" class="add_btn">add</button></li>
     </form>
     </body>
 </html>

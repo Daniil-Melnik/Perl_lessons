@@ -26,7 +26,7 @@ eval
   my $event = $cgi->param('event');
 
   #my $cl = "melnik_group_list";
-  #my $event = "add";
+  #my $event = "delete";
   
   # making new object of class
   require $cl . ".pl";

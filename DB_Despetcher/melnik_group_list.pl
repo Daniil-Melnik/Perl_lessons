@@ -51,5 +51,22 @@ sub add
   $self->show_list;
 }
 
+
+sub delete
+{
+  my $self = shift;
+  
+  my $id_to_del = $cgi->param('id');
+  #my $id_to_del = 125;
+
+
+  my $link = DataBase->new();
+  my $dbh = $link->get_dbh();
+
+  my $sth = $dbh->prepare("DELETE FROM group_id WHERE tg_id = ?");
+  $sth->execute($id_to_del);
+
+  $self->show_list();
+}
 1
 
