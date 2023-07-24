@@ -3,8 +3,10 @@ use warnings;
 use utf8;
 use lib "./";
 use WebProgTelegramClient;
+use DBI;
 
-# use Time::Local;
+use Time::Local;
+use DateTime;
 
 my $token = '6164752146:AAHybXJiUKBnL6f5MRv-Hf7g8i574BW9Te4';
 my $chat_id = '-1001910130358';
@@ -25,9 +27,12 @@ if (!$dbh) { die $DBI::errstr; }
 $dbh->do('SET NAMES cp1251');
 
 
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/culverempire\n/shubertAB\n/ascotbaileyS200\n/smiththunderbolt\n/shubertbeverly\n/patomac_indian\n/smith_custom_200\n/lassiter_series_75\n/smith_deluxe_station_wagon
-\n/walter_military" } );
+#$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/culverempire\n/shubertAB\n/ascotbaileyS200\n/smiththunderbolt\n/shubertbeverly\n/patomac_indian\n/smith_custom_200\n/lassiter_series_75\n/smith_deluxe_station_wagon
+#/walter_military" } );
 #$bot->call( 'sendPhoto', { chat_id => $chat_id, photo => "https://i.ytimg.com/vi/65zkVM_gWDE/maxresdefault.jpg?7857057827" } );
+
+my $time = time()-15;
+#print $time;
 
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
 
@@ -41,12 +46,21 @@ foreach my $update ( @{ $updates->{result} } )
       my $date_of_message = $upd_message->{ date };
       my $message_text = $upd_message->{ text };
 
-      if (index($message_text, "/") == 0)
+      if ((index($message_text, "/") == 0)&&(index($message_text, "@") != -1))
       {
-        my $arrayref_of_res = $dbh->selectall_arrayref( "SELECT id, student_id, hw_num, result, date_of_complite FROM webprog5_melnik_results", { Slice => {} });
-        my $sql = "SELECT name, discription, url FROM auto WHERE comand = ?";
+        my @message_command = split('@', $message_text);
+        #print ($date_of_message);
+        my $sql = "SELECT name, url FROM auto WHERE comand = ?";
         my $sth = $dbh->prepare($sql);
-        $sth->execute($message_text);
+
+        # execute the query
+        $sth->execute("/culverempire");
+
+        while(my @row = $sth->fetchrow_array()){
+          printf("%s\t%s\n",$row[0],$row[1]);
+        }       
+        $sth->finish();
+        # $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $sql->{ url } } );
       } 
     }
     $number_of_update = $update->{ update_id };
