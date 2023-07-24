@@ -49,18 +49,18 @@ foreach my $update ( @{ $updates->{result} } )
       if ((index($message_text, "/") == 0)&&(index($message_text, "@") != -1))
       {
         my @message_command = split('@', $message_text);
-        #print ($date_of_message);
+        # print ($date_of_message);
         my $sql = "SELECT name, url FROM auto WHERE comand = ?";
         my $sth = $dbh->prepare($sql);
 
         # execute the query
-        $sth->execute("/culverempire");
+        $sth->execute($message_command[0]);
 
         while(my @row = $sth->fetchrow_array()){
-          printf("%s\t%s\n",$row[0],$row[1]);
+          $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[1] } );
         }       
         $sth->finish();
-        # $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $sql->{ url } } );
+        
       } 
     }
     $number_of_update = $update->{ update_id };
