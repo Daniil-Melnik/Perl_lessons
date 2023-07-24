@@ -14,18 +14,19 @@ my $chat = $bot->call( 'getChat', {chat_id => $chat_id} );
 my %all_members; 
 my $number_of_update = 0;
 
-# my $attr = { PrintError => 0, RaiseError => 0 };
-# my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
-# my $username = "webprog5_melnik";
-# my $password = "2WsxcdE3";
+my $attr = { PrintError => 0, RaiseError => 0 };
+my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
+my $username = "webprog5_melnik";
+my $password = "2WsxcdE3";
 
-# my $dbh = DBI->connect( $data_source, $username, $password, $attr );
-# if (!$dbh) { die $DBI::errstr; }
+my $dbh = DBI->connect( $data_source, $username, $password, $attr );
+if (!$dbh) { die $DBI::errstr; }
 
-# $dbh->do('SET NAMES cp1251');
-# my $arrayref_of_res = $dbh->selectall_arrayref( "SELECT id, student_id, hw_num, result, date_of_complite FROM webprog5_melnik_results", { Slice => {} });
+$dbh->do('SET NAMES cp1251');
 
-#$bot->call( 'sendMessage', { chat_id => $chat_id, text => "start_1" } );
+
+$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/culverempire\n/shubertAB\n/ascotbaileyS200\n/smiththunderbolt\n/shubertbeverly\n/patomac_indian\n/smith_custom_200\n/lassiter_series_75\n/smith_deluxe_station_wagon
+\n/walter_military" } );
 #$bot->call( 'sendPhoto', { chat_id => $chat_id, photo => "https://i.ytimg.com/vi/65zkVM_gWDE/maxresdefault.jpg?7857057827" } );
 
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
@@ -42,7 +43,10 @@ foreach my $update ( @{ $updates->{result} } )
 
       if (index($message_text, "/") == 0)
       {
-        print "true\n";
+        my $arrayref_of_res = $dbh->selectall_arrayref( "SELECT id, student_id, hw_num, result, date_of_complite FROM webprog5_melnik_results", { Slice => {} });
+        my $sql = "SELECT name, discription, url FROM auto WHERE comand = ?";
+        my $sth = $dbh->prepare($sql);
+        $sth->execute($message_text);
       } 
     }
     $number_of_update = $update->{ update_id };
