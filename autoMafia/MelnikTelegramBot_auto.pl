@@ -21,7 +21,7 @@ my $number_of_update = 0;
 my $attr = { PrintError => 0, RaiseError => 0 };
 my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
 my $username = "webprog5_melnik";
-my $password = "2WsxcdE3";
+my $password = "2WsxcdE3"; 
 
 my $dbh = DBI->connect( $data_source, $username, $password, $attr );
 if (!$dbh) { die $DBI::errstr; }
