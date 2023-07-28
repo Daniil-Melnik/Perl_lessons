@@ -33,7 +33,7 @@ $dbh->do("SET character_set_connection = utf8");
 $bot->call( 'sendMessage', { chat_id => $chat_id, text => "/ascot_bailey_S200\n/culver_empire\n/lassiter_series_75\n/potomac_indian\n/shubert_series_AB\n/smith_custom_200\n/smith_deluxe_station_wagon\n/smith_thunderbolt\n/walter_military" } );
 #$bot->call( 'sendPhoto', { chat_id => $chat_id, photo => "https://i.ytimg.com/vi/65zkVM_gWDE/maxresdefault.jpg?7857057827" } );
 
-my $time = time() - 600;
+my $time = time() - 120;
 #print $time;
 
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
@@ -75,6 +75,7 @@ foreach my $update ( @{ $updates->{result} } )
             }
             $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
             $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
+            $bot->call( 'sendMessage', { chat_id => $chat_id, text => "======================" } );
 						close ( InFile );
           }
                  
