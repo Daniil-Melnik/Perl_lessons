@@ -61,10 +61,6 @@ foreach my $update ( @{ $updates->{result} } )
           $sth->execute($message_command[0]);
 
           while(my @row = $sth->fetchrow_array()){
-            print $row[1] . "\n\n";
-            my $octets = encode("utf8", $row[1]);
-            my $octets_1 = encode("cp1251", $row[1]);
-            my $octets_2 = encode("iso-8859-1", $row[1]);
 
 						open(my $fh, '>', 'text.txt') or die;
 						print $fh $row[1];
@@ -76,23 +72,10 @@ foreach my $update ( @{ $updates->{result} } )
             {
             	print $ line ;
               $res_line = $res_line . $line . "\n";
-							
             }
             $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
+            $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
 						close ( InFile );
-						
-						#print $octets . "\n";
-						my $res = "Проверка";
-#my $encoding_name_1 = Encode::Detect::Detector::detect($row[1]);
-#my $encoding_name_2 = Encode::Detect::Detector::detect($res);
-#print ("\n" . $row[1] . " " . $res . " " . $octets . "\n");
-						#print $res . "\n";
-            #$bot->call( 'sendMessage', { chat_id => $chat_id, text => $row[1] } );
-						#$bot->call( 'sendMessage', { chat_id => $chat_id, text => $octets } );
-						#$bot->call( 'sendMessage', { chat_id => $chat_id, text => $octets_1 } );
-						#$bot->call( 'sendMessage', { chat_id => $chat_id, text => $octets_2 } );
-            #$bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
-            #print ($row[0] . " " . "\n" . $row[1] . "\n" . $row[2]);
           }
                  
           $sth->finish();
