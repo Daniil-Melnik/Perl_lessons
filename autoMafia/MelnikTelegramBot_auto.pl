@@ -30,7 +30,7 @@ $dbh->do("SET NAMES utf8");
 $dbh->do("SET character_set_connection = utf8");
 
 
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => "Привет" } );
+$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/culver_empire" } );
 #$bot->call( 'sendPhoto', { chat_id => $chat_id, photo => "https://i.ytimg.com/vi/65zkVM_gWDE/maxresdefault.jpg?7857057827" } );
 
 my $time = time() - 600;
@@ -61,7 +61,7 @@ foreach my $update ( @{ $updates->{result} } )
           $sth->execute($message_command[0]);
 
           while(my @row = $sth->fetchrow_array()){
-            print $row[1] . "\n";
+            print $row[1] . "\n\n";
             my $octets = encode("utf8", $row[1]);
             my $octets_1 = encode("cp1251", $row[1]);
             my $octets_2 = encode("iso-8859-1", $row[1]);
@@ -71,12 +71,14 @@ foreach my $update ( @{ $updates->{result} } )
 						close $fh;
   					
 						open(InFile, '<:encoding(UTF-8)', "text.txt");
-
+            my $res_line = $row[0] . "\n";
 						while (my $line = <InFile>)
             {
             	print $ line ;
-							$bot->call( 'sendMessage', { chat_id => $chat_id, text => $line } );
+              $res_line = $res_line . $line . "\n";
+							
             }
+            $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
 						close ( InFile );
 						
 						#print $octets . "\n";
