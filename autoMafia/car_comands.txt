@@ -27,12 +27,12 @@
 -* /shubert_series_AB
 * /shubert_38
 * /shubert_38_taxi
-Shubert	38 Panel Truck
-Shubert	38 Hearse
-Shubert	Pickup
-Shubert	Pickup Hot Rod
-Shubert	LKW
-Shubert	Snow Plow
+* /shubert_38_panel_truck
+* /shubert_38_hearse
+* /shubert_pickup
+* /shubert_pickup_hot_rod
+* /shubert_lkv
+* /shubert_snow_plow
 Shubert	Armored Truck
 * /shubert_beverly
 Shubert	Frigate
