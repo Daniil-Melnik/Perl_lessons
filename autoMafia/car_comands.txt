@@ -33,11 +33,11 @@
 * /shubert_pickup_hot_rod
 * /shubert_lkv
 * /shubert_snow_plow
-Shubert	Armored Truck
+* /shubert_armored_truck
 * /shubert_beverly
-Shubert	Frigate
-Sicily Military Truck
-Smith	V8
+* /shubert_frigate
+* /sicily_military_truck
+* /smith_v8
 Smith Coupe
 * /smith_custom_200
 Smith Custom 200 Police Special
