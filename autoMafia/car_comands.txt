@@ -10,10 +10,10 @@
 * /gai_353_military_truck
 * /hank_b
 * /hank_b_fuel_tank
-Houston Wasp
-ISW 508
-Jefferson Provincial
-Jefferson Futura
+* /houston_wasp
+* /isw_508
+* /jefferson_provincial
+* /jefferson_futura
 Lassiter Series 69
 Lassiter Series 69 Detective Special
 * /lassiter_series_75
