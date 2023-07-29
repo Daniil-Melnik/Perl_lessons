@@ -14,19 +14,19 @@
 * /isw_508
 * /jefferson_provincial
 * /jefferson_futura
-Lassiter Series 69
-Lassiter Series 69 Detective Special
+* /lassiter_series_69
+* /lassiter_series_69_detective_special
 * /lassiter_series_75
-Parry City Bus
-Parry Police Bus
-* /potomac_indian
-Potomac Elysium
-Quicksilver Windsor
-Quicksilver Windsor Taxi
-Roller GL300
-* /shubert_series_AB
-Shubert	38
-Shubert	38 Taxi
+* /parry_city_bus
+* /police_bus
+-* /potomac_indian
+* /potomac_elysium
+* /quicksilver_windsor
+* /quicksilver_windsor_taxi
+* /roller_GL300
+-* /shubert_series_AB
+* /shubert_38
+* /shubert_38_taxi
 Shubert	38 Panel Truck
 Shubert	38 Hearse
 Shubert	Pickup
