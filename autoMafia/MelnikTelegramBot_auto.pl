@@ -30,7 +30,7 @@ $dbh->do("SET NAMES utf8");
 $dbh->do("SET character_set_connection = utf8");
 
 
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/ascot_bailey_S200\n/berkley_kingfisher\n/сhaffeque_XT\n/cossack\n/culver_empire\n/culver_empire_police_special\n/culver_empire_detective_special\n/delizia_grandeamerica\n/delizia_410_grand_america\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" } );
+$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/ascot_bailey_S200\n/berkley_kingfisher\n/сhaffeque_XT\n/cossack\n/culver_empire\n/culver_empire_police_special\n/culver_empire_detective_special\n/delizia_grandeamerica\n/delizia_410_grand_america\n/gai_353_military_truck\n/hank_b\n/hank_b_fuel_tank\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" } );
 
 my $time = time() - 120;
 
