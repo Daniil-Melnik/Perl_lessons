@@ -30,7 +30,7 @@ $dbh->do("SET NAMES utf8");
 $dbh->do("SET character_set_connection = utf8");
 
 
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/ascot_bailey_S200\n/culver_empire\n/lassiter_series_75\n/potomac_indian\n/shubert_series_AB\n/smith_custom_200\n/smith_deluxe_station_wagon\n/smith_thunderbolt\n/walter_military" } );
+$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/ascot_bailey_S200\n/berkley_kingfisher\n/сhaffeque_XT\n/cossack\n/culver_empire\n/culver_empire_police_special\n/culver_empire_detective_special\n/delizia_grandeamerica\n/delizia_410_grand_america\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" } );
 
 my $time = time() - 120;
 
