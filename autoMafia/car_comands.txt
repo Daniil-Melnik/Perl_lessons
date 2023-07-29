@@ -47,9 +47,9 @@
 * /smith_thunderbolt
 * /smith_truck
 * /walker_rocket
-Walter Coupe
-Walter Hot Rod
-Walter Utility
+* /walter_coupe
+* /walter_hot_rod
+* /walter_utility
 * /walter_military
-Waybar Hot Rod
-Pivkorp Молоковоз
+* /waybar_hot_rod
+* /milk_truck
