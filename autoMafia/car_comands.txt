@@ -1,0 +1,55 @@
+-* /ascot_bailey_S200
+-* /berkley_kingfisher
+* сhaffeque_XT
+* /cossack
+-* /culver_empire
+* /culver_empire_police_special
+* /culver_empire_detective_special
+Delizia	Grandeamerica 
+Delizia 410 Grand America
+GAI 353 Military Truck
+Hank B
+Hank B Fuel Tank
+Houston Wasp
+ISW 508
+Jefferson Provincial
+Jefferson Futura
+Lassiter Series 69
+Lassiter Series 69 Detective Special
+* /lassiter_series_75
+Parry City Bus
+Parry Police Bus
+* /potomac_indian
+Potomac Elysium
+Quicksilver Windsor
+Quicksilver Windsor Taxi
+Roller GL300
+* /shubert_series_AB
+Shubert	38
+Shubert	38 Taxi
+Shubert	38 Panel Truck
+Shubert	38 Hearse
+Shubert	Pickup
+Shubert	Pickup Hot Rod
+Shubert	LKW
+Shubert	Snow Plow
+Shubert	Armored Truck
+* /shubert_beverly
+Shubert	Frigate
+Sicily Military Truck
+Smith	V8
+Smith Coupe
+* /smith_custom_200
+Smith Custom 200 Police Special
+Smith Mainline
+* /smith_deluxe_station_wagon
+Smith 34 Hot Rod
+* /smith_thunderbolt
+Smith Truck
+Walker Rocket
+Walter Coupe
+Walter Hot Rod
+Walter Utility
+* /walter_military
+Waybar Hot Rod
+Pivkorp Молоковоз
