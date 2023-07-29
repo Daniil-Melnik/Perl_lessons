@@ -38,15 +38,15 @@
 * /shubert_frigate
 * /sicily_military_truck
 * /smith_v8
-Smith Coupe
+* /smith_coupe
 * /smith_custom_200
-Smith Custom 200 Police Special
-Smith Mainline
+* /smith_custom_200_police_special
+* /smith_mainline
 * /smith_deluxe_station_wagon
-Smith 34 Hot Rod
+* /smith_34_hot_rod
 * /smith_thunderbolt
-Smith Truck
-Walker Rocket
+* /smith_truck
+* /walker_rocket
 Walter Coupe
 Walter Hot Rod
 Walter Utility
