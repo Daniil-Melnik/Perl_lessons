@@ -1,6 +1,6 @@
 -* /ascot_bailey_S200
 -* /berkley_kingfisher
-* сhaffeque_XT
+* /сhaffeque_XT
 * /cossack
 -* /culver_empire
 * /culver_empire_police_special
