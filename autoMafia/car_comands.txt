@@ -5,11 +5,11 @@
 -* /culver_empire
 * /culver_empire_police_special
 * /culver_empire_detective_special
-Delizia	Grandeamerica 
-Delizia 410 Grand America
-GAI 353 Military Truck
-Hank B
-Hank B Fuel Tank
+* /delizia_grandeamerica 
+* /delizia_410_grand_america
+* /gai_353_military_truck
+* /hank_b
+* /hank_b_fuel_tank
 Houston Wasp
 ISW 508
 Jefferson Provincial
