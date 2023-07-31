@@ -32,7 +32,6 @@ $dbh->do("SET character_set_connection = utf8");
 
 my $all_models = "/ascot_bailey_S200\n
 /berkley_kingfisher\n
-/сhaffeque_XT\n
 /cossack\n
 /culver_empire\n/culver_empire_police_special\n/culver_empire_detective_special\n
 /delizia_grandeamerica\n/delizia_410_grand_america\n
