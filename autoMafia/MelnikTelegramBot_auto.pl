@@ -74,7 +74,22 @@ my $all_models_2 = "/ascot_bailey_S200\n
 /milk_truck\n";
 
 
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models_2 } );
+my $all_models_3 = "/ascot_bailey_S200\n
+/berkley_kingfisher\n
+/cossack\n/culver_empire\n/culver_empire_police_special\n
+/delizia_410_grand_america\n
+/houston_wasp\n
+/isw_508\n/jefferson_provincial\n/jefferson_futura\n
+/lassiter_series_69\n/lassiter_series_75\n
+/potomac_indian\n/potomac_elysium\n
+/quicksilver_windsor\n/quicksilver_windsor_taxi\n
+/roller_GL300\n
+/shubert_series_AB\n/shubert_38\n/shubert_38_taxi\n/shubert_38_panel_truck\n/shubert_38_hearse\n/shubert_pickup\n/shubert_pickup_hot_rod\n/shubert_lkv\n/shubert_snow_plow\n/shubert_armored_truck\n/shubert_beverly\n/shubert_frigate\n/smith_v8\n/smith_coupe\n/smith_custom_200\n/smith_custom_200_police_special\n/smith_mainline\n/smith_deluxe_station_wagon\n/smith_34_hot_rod\n/smith_thunderbolt\n/smith_truck\n
+/walker_rocket\n/walter_coupe\n/walter_hot_rod\n/walter_utility\n/walter_military\n/waybar_hot_rod\n
+/milk_truck\n";
+
+
+$bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models_3 } );
 
 my $time = time() - 120;
 
@@ -117,7 +132,6 @@ foreach my $update ( @{ $updates->{result} } )
             }
             $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
             $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
-            $bot->call( 'sendMessage', { chat_id => $chat_id, text => "======================" } );
 						close ( InFile );
           }
                  
@@ -130,7 +144,3 @@ foreach my $update ( @{ $updates->{result} } )
   }
 
 print "ok1";
-
-
-
-
