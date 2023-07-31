@@ -1,9 +1,9 @@
--* /ascot_bailey_S200 
+-* /ascot_bailey_S200
 -* /berkley_kingfisher
 * /сhaffeque_XT
 * /cossack
 -* /culver_empire
-* /culver_empire_police_special 
+* /culver_empire_police_special
 * /culver_empire_detective_special
 * /delizia_grandeamerica 
 * /delizia_410_grand_america
