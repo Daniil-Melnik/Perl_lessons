@@ -89,7 +89,7 @@ my $all_models_3 = "/ascot_bailey_S200\n
 /milk_truck\n";
 
 
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models_3 } );
+$bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list" } );
 
 my $time = time() - 120;
 
@@ -106,33 +106,39 @@ foreach my $update ( @{ $updates->{result} } )
 
       if ((index($message_text, "/") == 0)&&(index($message_text, "@") != -1))
       {
-				
         if ($date_of_message >= $time)
         {
           my @message_command = split('@', $message_text);
-          # print ($date_of_message);
-          my $sql = "SELECT name, discription, url FROM auto WHERE comand = ?";
-          my $sth = $dbh->prepare($sql);
+          if ($message_command[0] eq "/list")
+          {
+            $bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models_3 } );
+          }
+          else
+          {
+            # print ($date_of_message);
+            my $sql = "SELECT name, discription, url FROM auto WHERE comand = ?";
+            my $sth = $dbh->prepare($sql);
 
-          # execute the query
-          $sth->execute($message_command[0]);
+            # execute the query
+            $sth->execute($message_command[0]);
 
-          while(my @row = $sth->fetchrow_array()){
+            while(my @row = $sth->fetchrow_array()){
 
-						open(my $fh, '>', 'text.txt') or die;
-						print $fh $row[1];
-						close $fh;
-  					
-						open(InFile, '<:encoding(UTF-8)', "text.txt");
-            my $res_line = $row[0] . "\n\n";
-						while (my $line = <InFile>)
-            {
-            	print $ line ;
-              $res_line = $res_line . $line . "\n";
+              open(my $fh, '>', 'text.txt') or die;
+              print $fh $row[1];
+              close $fh;
+              
+              open(InFile, '<:encoding(UTF-8)', "text.txt");
+              my $res_line = $row[0] . "\n\n";
+              while (my $line = <InFile>)
+              {
+                print $ line ;
+                $res_line = $res_line . $line . "\n";
+              }
+              $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
+              $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
+              close ( InFile );
             }
-            $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
-            $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
-						close ( InFile );
           }
                  
           $sth->finish();
