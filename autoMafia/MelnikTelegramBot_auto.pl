@@ -30,7 +30,36 @@ $dbh->do("SET NAMES utf8");
 $dbh->do("SET character_set_connection = utf8");
 
 
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => "/ascot_bailey_S200\n/berkley_kingfisher\n/сhaffeque_XT\n/cossack\n/culver_empire\n/culver_empire_police_special\n/culver_empire_detective_special\n/delizia_grandeamerica\n/delizia_410_grand_america\n/gai_353_military_truck\n/hank_b\n/hank_b_fuel_tank\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" } );
+my $all_models = "/ascot_bailey_S200\n/berkley_kingfisher\n
+/сhaffeque_XT\n/cossack\n
+/culver_empire\n/culver_empire_police_special\n
+/culver_empire_detective_special\n/delizia_grandeamerica\n
+/delizia_410_grand_america\n/gai_353_military_truck\n
+/hank_b\n/hank_b_fuel_tank\n
+/houston_wasp\n/isw_508\n
+/jefferson_provincial\n/jefferson_futura\n
+/lassiter_series_69\n/lassiter_series_69_detective_special\n
+/lassiter_series_75\n/parry_city_bus\n
+/police_bus\n/potomac_indian\n
+/potomac_elysium\n/quicksilver_windsor\n
+/quicksilver_windsor_taxi\n/roller_GL300\n
+/shubert_series_AB\n/shubert_38\n
+/shubert_38_taxi\n/shubert_38_panel_truck\n
+/shubert_38_hearse\n/shubert_pickup\n
+/shubert_pickup_hot_rod\n/shubert_lkv\n
+/shubert_snow_plow\n/shubert_armored_truck\n
+/shubert_beverly\n/shubert_frigate\n
+/sicily_military_truck\n/smith_v8\n
+/smith_coupe\n/smith_custom_200\n
+/smith_custom_200_police_special\n/smith_mainline\n
+/smith_deluxe_station_wagon\n/smith_34_hot_rod\n
+/smith_thunderbolt\n/smith_truck\n
+/walker_rocket\n/walter_coupe\n
+/walter_hot_rod\n/walter_utility\n
+/walter_military\n/waybar_hot_rod\n
+/milk_truck\n";
+
+my $bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models } );
 
 my $time = time() - 120;
 
