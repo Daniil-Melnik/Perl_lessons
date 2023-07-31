@@ -139,9 +139,8 @@ foreach my $update ( @{ $updates->{result} } )
               $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
               close ( InFile );
             }
+            $sth->finish();
           }
-                 
-          $sth->finish();
         }
       } 
     }
