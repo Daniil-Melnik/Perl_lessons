@@ -86,9 +86,8 @@ my $all_models_3 = "/ascot_bailey_S200\n
 /shubert_series_AB\n/shubert_38\n/shubert_38_taxi\n/shubert_38_panel_truck\n/shubert_38_hearse\n/shubert_pickup\n/shubert_pickup_hot_rod\n/shubert_lkv\n/shubert_snow_plow\n/shubert_armored_truck\n/shubert_beverly\n/shubert_frigate\n/smith_v8\n/smith_coupe\n/smith_custom_200\n/smith_custom_200_police_spec\n/smith_mainline\n/smith_deluxe_station_wagon\n/smith_34_hot_rod\n/smith_thunderbolt\n
 /walker_rocket\n/walter_coupe\n/walter_hot_rod\n/walter_utility\n/walter_military\n/waybar_hot_rod\n
 /milk_truck\n";
-my $k = 0;
-while ($k < 3)
-{
+
+
   open(my $fh, '<:encoding(UTF-8)', 'date.txt');
   my $last_time = <$fh>;
 
@@ -160,6 +159,5 @@ while ($k < 3)
       $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list" } );
     }
   }
-  $k = $k + 1;
+
   print ".";
-}
