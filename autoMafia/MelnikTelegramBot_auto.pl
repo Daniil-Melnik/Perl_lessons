@@ -90,13 +90,8 @@ my $all_models_3 = "/ascot_bailey_S200\n
 
 $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list" } );
 
-my $last_time = time();
-open(my $fh, '>', 'date.txt') or die;
-print $fh $last_time;
-
-#open(my $fh, '<:encoding(UTF-8)', 'date.txt');
-#my $last_time = <$fh>;
-
+open(my $fh, '<:encoding(UTF-8)', 'date.txt');
+my $last_time = <$fh>;
 
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
 if ($updates)
@@ -148,6 +143,8 @@ if ($updates)
             }
             $sth->finish();
           }
+          open(my $fh, '>', 'text.txt') or die;
+          print $fh $date_of_message;
         }
       } 
     }
