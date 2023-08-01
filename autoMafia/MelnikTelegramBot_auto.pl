@@ -105,11 +105,13 @@ if ($updates)
       my $user_of_message_name = $upd_message->{ from }->{ first_name };
       my $date_of_message = $upd_message->{ date };
       my $message_text = $upd_message->{ text };
+      
 
       if ((index($message_text, "/") == 0)&&(index($message_text, "@") != -1))
       {
-        if ($date_of_message >= $last_time)
+        if ($date_of_message > $last_time)
         {
+          print ($date_of_message . "\n" . $last_time);
           my @message_command = split('@', $message_text);
           if ($message_command[0] eq "/list")
           {
@@ -143,7 +145,7 @@ if ($updates)
             }
             $sth->finish();
           }
-          open(my $fh, '>', 'text.txt') or die;
+          open(my $fh, '>', 'date.txt') or die;
           print $fh $date_of_message;
         }
       } 
