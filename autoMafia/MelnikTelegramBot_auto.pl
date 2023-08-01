@@ -8,7 +8,6 @@ use Encode qw(decode encode);
 use Time::Local;
 use DateTime;
 use utf8;
-#use cp1251;
 
 my $token = '6164752146:AAHybXJiUKBnL6f5MRv-Hf7g8i574BW9Te4';
 my $chat_id = '-1001910130358';
