@@ -90,10 +90,12 @@ my $all_models_3 = "/ascot_bailey_S200\n
 
 $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list" } );
 
-my $time = time() - 120;
+my $last_time = time() - 120;
 
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
-foreach my $update ( @{ $updates->{result} } )
+if ($updates)
+{
+  foreach my $update ( @{ $updates->{result} } )
   {
     my $upd_message = $update->{ message };
     if ( $upd_message )
@@ -105,7 +107,7 @@ foreach my $update ( @{ $updates->{result} } )
 
       if ((index($message_text, "/") == 0)&&(index($message_text, "@") != -1))
       {
-        if ($date_of_message >= $time)
+        if ($date_of_message >= $last_time)
         {
           my @message_command = split('@', $message_text);
           if ($message_command[0] eq "/list")
@@ -146,5 +148,6 @@ foreach my $update ( @{ $updates->{result} } )
 
     $number_of_update = $update->{ update_id };
   }
+}
 
 print "ok1";
