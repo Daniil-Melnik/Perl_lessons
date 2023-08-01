@@ -110,7 +110,7 @@ my $all_models_3 = "/ascot_bailey_S200\n
         {
           if ($date_of_message > $last_time)
           {
-            print ($date_of_message . "\n" . $last_time);
+            print ($date_of_message  . $last_time);
             my @message_command = split('@', $message_text);
             if ($message_command[0] eq "/list")
             {
