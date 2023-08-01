@@ -148,7 +148,7 @@ while ($usage_indicator == 1)
                 while (my $line = <InFile>)
                 {
                   print $ line ;
-                  $res_line = $res_line . $line . "\n";
+                  $res_line = $res_line . $line;
                 }
                 $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
                 $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
