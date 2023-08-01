@@ -87,15 +87,13 @@ my $all_models_3 = "/ascot_bailey_S200\n
 /walker_rocket\n/walter_coupe\n/walter_hot_rod\n/walter_utility\n/walter_military\n/waybar_hot_rod\n
 /milk_truck\n";
 
-
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list" } );
-
 open(my $fh, '<:encoding(UTF-8)', 'date.txt');
 my $last_time = <$fh>;
 
 my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
 if ($updates)
 {
+  my $print_adding_message = 0;
   foreach my $update ( @{ $updates->{result} } )
   {
     my $upd_message = $update->{ message };
@@ -116,6 +114,7 @@ if ($updates)
           if ($message_command[0] eq "/list")
           {
             $bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models_3 } );
+            $print_adding_message = 0;
           }
           else
           {
@@ -144,6 +143,7 @@ if ($updates)
               close ( InFile );
             }
             $sth->finish();
+            $print_adding_message = 1;
           }
           open(my $fh, '>', 'date.txt') or die;
           print $fh $date_of_message;
@@ -152,6 +152,10 @@ if ($updates)
     }
 
     $number_of_update = $update->{ update_id };
+  }
+  if ($print_adding_message == 1)
+  {
+    $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list" } );
   }
 }
 
