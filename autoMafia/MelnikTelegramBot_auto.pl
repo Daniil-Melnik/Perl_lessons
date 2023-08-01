@@ -91,6 +91,10 @@ my $all_models_3 = "/ascot_bailey_S200\n
   open(my $fh, '<:encoding(UTF-8)', 'date.txt');
   my $last_time = <$fh>;
 
+my $usage_indicator = 1;
+
+while ($usage_indicator == 1)
+{
   my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
   if ($updates)
   {
@@ -117,6 +121,13 @@ my $all_models_3 = "/ascot_bailey_S200\n
               $bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models_3 } );
               $print_adding_message = 0;
             }
+
+            elsif ($message_command[0] eq "/stop")
+            {
+              $usage_indicator = 0;
+              print "stopped";
+            }
+
             else
             {
               # print ($date_of_message);
@@ -161,3 +172,4 @@ my $all_models_3 = "/ascot_bailey_S200\n
   }
 
   print ".";
+}
