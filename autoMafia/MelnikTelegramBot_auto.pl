@@ -87,76 +87,79 @@ my $all_models_3 = "/ascot_bailey_S200\n
 /walker_rocket\n/walter_coupe\n/walter_hot_rod\n/walter_utility\n/walter_military\n/waybar_hot_rod\n
 /milk_truck\n";
 
-open(my $fh, '<:encoding(UTF-8)', 'date.txt');
-my $last_time = <$fh>;
-
-my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
-if ($updates)
+while ($k < 3)
 {
-  my $print_adding_message = 0;
-  foreach my $update ( @{ $updates->{result} } )
+  open(my $fh, '<:encoding(UTF-8)', 'date.txt');
+  my $last_time = <$fh>;
+
+  my $updates = $bot->call( 'getUpdates', { offset => $number_of_update + 1 } );
+  if ($updates)
   {
-    my $upd_message = $update->{ message };
-    if ( $upd_message )
+    my $print_adding_message = 0;
+    foreach my $update ( @{ $updates->{result} } )
     {
-      my $user_of_message_id = $upd_message->{ from }->{ id };
-      my $user_of_message_name = $upd_message->{ from }->{ first_name };
-      my $date_of_message = $upd_message->{ date };
-      my $message_text = $upd_message->{ text };
-      
-
-      if ((index($message_text, "/") == 0)&&(index($message_text, "@") != -1))
+      my $upd_message = $update->{ message };
+      if ( $upd_message )
       {
-        if ($date_of_message > $last_time)
+        my $user_of_message_id = $upd_message->{ from }->{ id };
+        my $user_of_message_name = $upd_message->{ from }->{ first_name };
+        my $date_of_message = $upd_message->{ date };
+        my $message_text = $upd_message->{ text };
+        
+
+        if ((index($message_text, "/") == 0)&&(index($message_text, "@") != -1))
         {
-          print ($date_of_message . "\n" . $last_time);
-          my @message_command = split('@', $message_text);
-          if ($message_command[0] eq "/list")
+          if ($date_of_message > $last_time)
           {
-            $bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models_3 } );
-            $print_adding_message = 0;
-          }
-          else
-          {
-            # print ($date_of_message);
-            my $sql = "SELECT name, discription, url FROM auto WHERE comand = ?";
-            my $sth = $dbh->prepare($sql);
-
-            # execute the query
-            $sth->execute($message_command[0]);
-
-            while(my @row = $sth->fetchrow_array()){
-
-              open(my $fh, '>', 'text.txt') or die;
-              print $fh $row[1];
-              close $fh;
-              
-              open(InFile, '<:encoding(UTF-8)', "text.txt");
-              my $res_line = $row[0] . "\n\n";
-              while (my $line = <InFile>)
-              {
-                print $ line ;
-                $res_line = $res_line . $line . "\n";
-              }
-              $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
-              $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
-              close ( InFile );
+            print ($date_of_message . "\n" . $last_time);
+            my @message_command = split('@', $message_text);
+            if ($message_command[0] eq "/list")
+            {
+              $bot->call( 'sendMessage', { chat_id => $chat_id, text => $all_models_3 } );
+              $print_adding_message = 0;
             }
-            $sth->finish();
-            $print_adding_message = 1;
+            else
+            {
+              # print ($date_of_message);
+              my $sql = "SELECT name, discription, url FROM auto WHERE comand = ?";
+              my $sth = $dbh->prepare($sql);
+
+              # execute the query
+              $sth->execute($message_command[0]);
+
+              while(my @row = $sth->fetchrow_array()){
+
+                open(my $fh, '>', 'text.txt') or die;
+                print $fh $row[1];
+                close $fh;
+                
+                open(InFile, '<:encoding(UTF-8)', "text.txt");
+                my $res_line = $row[0] . "\n\n";
+                while (my $line = <InFile>)
+                {
+                  print $ line ;
+                  $res_line = $res_line . $line . "\n";
+                }
+                $bot->call( 'sendMessage', { chat_id => $chat_id, text => $res_line } );
+                $bot->call( 'sendPhoto', { chat_id => $chat_id, photo => $row[2] } );
+                close ( InFile );
+              }
+              $sth->finish();
+              $print_adding_message = 1;
+            }
+            open(my $fh, '>', 'date.txt') or die;
+            print $fh $date_of_message;
           }
-          open(my $fh, '>', 'date.txt') or die;
-          print $fh $date_of_message;
-        }
-      } 
+        } 
+      }
+
+      $number_of_update = $update->{ update_id };
     }
-
-    $number_of_update = $update->{ update_id };
+    if ($print_adding_message == 1)
+    {
+      $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list" } );
+    }
   }
-  if ($print_adding_message == 1)
-  {
-    $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list" } );
-  }
+  $k = $k + 1;
+  print ".";
 }
-
-print "ok1";
