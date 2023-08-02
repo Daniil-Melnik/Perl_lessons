@@ -93,7 +93,7 @@ my $last_time = <$fh>;
 
 my $usage_indicator = 1;
 
-$bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list\nДля выхода введите /stop" } );
+$bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей нажмите /list\nДля выхода нажмите /stop" } );
 
 while ($usage_indicator == 1)
 {
@@ -169,7 +169,7 @@ while ($usage_indicator == 1)
     }
     if ($print_adding_message == 1)
     {
-      $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей введите /list\nДля выхода введите /stop" } );
+      $bot->call( 'sendMessage', { chat_id => $chat_id, text => "Для открытия списка автомобилей нажмите /list\nДля выхода нажмите /stop" } );
     }
   }
 
