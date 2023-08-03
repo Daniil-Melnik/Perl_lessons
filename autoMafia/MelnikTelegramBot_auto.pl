@@ -160,7 +160,7 @@ while ($usage_indicator == 1)
               $print_adding_message = 1;
             }
             open(my $fh, '>', 'date.txt') or die;
-            print $fh $date_of_message;
+            print $fh $date_of_message; 
           }
         } 
       }
