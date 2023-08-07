@@ -23,11 +23,10 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
 -- Структура таблицы `auto`
 --
 
-CREATE TABLE `auto` (
+CREATE TABLE dog_exhebition.auto (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `comand` varchar(30) NOT NULL,

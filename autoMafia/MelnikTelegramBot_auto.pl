@@ -17,12 +17,33 @@ my $chat = $bot->call( 'getChat', {chat_id => $chat_id} );
 my %all_members; 
 my $number_of_update = 0;
 
-my $attr = { PrintError => 0, RaiseError => 0 };
-my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
-my $username = "webprog5_melnik";
-my $password = "2WsxcdE3"; 
+# my $attr = { PrintError => 0, RaiseError => 0 };
+# my $data_source = "DBI:mysql:webprog5_melniktgbot:localhost";
+# my $username = "webprog5_melnik";
+# my $password = "2WsxcdE3"; 
 
-my $dbh = DBI->connect( $data_source, $username, $password, $attr );
+# my $dbh = DBI->connect( $data_source, $username, $password, $attr );
+
+my $user = "root";
+my $pass = "1234qseft";
+my $host = "127.0.0.1";
+my $port = 3306;
+
+# my $url = "jdbc:vjdbc:rmi://$host:2000/VJdbc,eqe";  # Get this URL from JDBC data src
+
+my $url = "jdbc:mysql://localhost:3306/dog_exhebition";
+
+my %properties = ('user' => $user, 
+                  'password' => $pass, 
+                  'host.name' => $host, 
+                  'host.port' => $port);
+
+my $dsn = "dbi:JDBC:hostname=localhost;port=$port;url=$url";
+my $dbh = DBI->connect($dsn, undef, undef, 
+          { PrintError => 0, RaiseError => 1, jdbc_properties => \%properties })
+          or die "Failed to connect: ($DBI::err) $DBI::errstr\n";
+
+
 if (!$dbh) { die $DBI::errstr; }
 
 $dbh->do("SET NAMES utf8");
